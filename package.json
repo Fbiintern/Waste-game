@@ -1,0 +1,30 @@
+{
+  "name": "how-wasted-are-you",
+  "version": "1.0.0",
+  "description": "A game to teach waste segregation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [
+    "waste",
+    "segregation",
+    "game",
+    "education"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^13.5.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.55",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^4.9.5"
+  }
+}

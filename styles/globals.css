@@ -1,0 +1,140 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff;
+  color: #333;
+}
+
+.game-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 1px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 100;
+  width: 200px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bin-wrapper {
+  position: relative;
+}
+
+.bin-wrapper:hover .tooltip {
+  display: block;
+}
+
+.game-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.score {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.bins-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.bin-wrapper {
+  width: 120px;
+}
+
+.bin {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.fill-level {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: height 0.3s ease;
+}
+
+.bin-label {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  color: #000;
+}
+
+.waste-item {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: move;
+}
+
+@media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+
+  .game-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .score {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .bins-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 80%; /* Increased from 50% to 80% */
+    margin: 0 auto; /* Center align the container */
+  }
+
+  .bin-wrapper {
+    width: 100%;
+    
+  }
+
+  .bin {
+    height: 160px; /* Increased from 120px to 150px */
+  }
+
+  .bin-label {
+    font-size: 0.8rem;
+  }
+
+  .waste-item {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+  }
+}
