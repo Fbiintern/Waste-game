@@ -6,9 +6,8 @@ interface BinProps {
   onDrop: (item: WasteItemType, category: string) => void;
   fillLevel: number;
   isCorrectBin: boolean;
-
+  onClick: () => void;
 }
-
 const getBinColor = (category: string): string => {
   switch(category) {
     case 'wet-waste': return 'rgba(0, 128, 0, 0.3)'; // Green
@@ -19,7 +18,6 @@ const getBinColor = (category: string): string => {
     default: return 'rgba(200, 200, 200, 0.3)'; // Grey
   }
 };
-
 const getBinDescription = (category: string): string => {
   switch(category) {
     case 'wet-waste': return 'For biodegradable waste like food scraps and plant matter.';
@@ -30,19 +28,16 @@ const getBinDescription = (category: string): string => {
     default: return 'Unknown waste category';
   }
 };
-
-const Bin: React.FC<BinProps> = ({ category, onDrop, fillLevel, isCorrectBin }) => {
+const Bin: React.FC<BinProps> = ({ category, onDrop, fillLevel, isCorrectBin, onClick }) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const item = JSON.parse(e.dataTransfer.getData("text")) as WasteItemType;
     onDrop(item, category);
   };
-
   const binColor = getBinColor(category);
   const binDescription = getBinDescription(category);
-
   return (
-    <div className="bin-wrapper">
+    <div className="bin-wrapper" onClick={onClick}>
       <div 
         className={`bin ${isCorrectBin ? 'correct-bin' : ''}`}
         style={{ backgroundColor: binColor }}
@@ -58,5 +53,4 @@ const Bin: React.FC<BinProps> = ({ category, onDrop, fillLevel, isCorrectBin }) 
     </div>
   );
 };
-
 export default Bin;

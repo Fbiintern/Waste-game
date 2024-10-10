@@ -1,51 +1,47 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { WasteItemType } from '../pages/index';
 
-const WasteItem: React.FC<WasteItemType> = ({ name, category }) => {
-  const [isDragging, setIsDragging] = useState(false);
+const WasteItem: React.FC<WasteItemType & { onTouchDrop: (item: WasteItemType) => void }> = ({ name, category, onTouchDrop }) => {
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     e.dataTransfer.setData("text/plain", JSON.stringify({ name, category }));
-    setIsDragging(true);
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.style.opacity = '0.5';
+    }
   };
 
-  const handleDragEnd = () => {
-    setIsDragging(false);
+  const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.style.opacity = '1';
+    }
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.touches[0];
-    const div = e.currentTarget;
-    const rect = div.getBoundingClientRect();
-    div.style.position = 'fixed';
-    div.style.left = `${touch.clientX - rect.width / 2}px`;
-    div.style.top = `${touch.clientY - rect.height / 2}px`;
-    setIsDragging(true);
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0];
-    const div = e.currentTarget;
-    div.style.left = `${touch.clientX - div.offsetWidth / 2}px`;
-    div.style.top = `${touch.clientY - div.offsetHeight / 2}px`;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    const div = e.currentTarget;
-    div.style.position = 'static';
-    setIsDragging(false);
-    // Here you would implement the logic to check if the item is over a bin
-    // and call the appropriate function to handle the drop
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartRef.current) {
+      const touch = e.changedTouches[0];
+      const diffX = Math.abs(touch.clientX - touchStartRef.current.x);
+      const diffY = Math.abs(touch.clientY - touchStartRef.current.y);
+      
+      if (diffX < 20 && diffY < 20) {
+        onTouchDrop({ name, category });
+      }
+    }
+    touchStartRef.current = null;
   };
 
   return (
     <div 
-      className={`waste-item ${isDragging ? 'dragging' : ''}`}
+      className="waste-item"
       draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       {name}

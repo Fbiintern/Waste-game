@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import WasteItem from '../components/WasteItem';
 import Bin from '../components/Bin';
 import WinnerDialog from '../components/WinnerDialog';
-
 export type WasteItemType = {
   name: string;
   category: string;
   // Add any other properties that your waste item should have
 };
-
 const wasteItems: WasteItemType[] = [
     // Wet Waste (20 items)
     { name: "Vegetable peels", category: "wet-waste" },
@@ -106,9 +104,7 @@ const wasteItems: WasteItemType[] = [
     { name: "Used toothbrushes", category: "sanitary-waste" },
     { name: "Wax strips", category: "sanitary-waste" },
 ];
-
 const categories: string[] = ["wet-waste", "dry-waste", "hazardous-waste", "sanitary-waste", "e-waste"];
-
 export default function Home() {
   const [currentItem, setCurrentItem] = useState<WasteItemType | null>(null);
   const [score, setScore] = useState<number>(0);
@@ -123,11 +119,9 @@ export default function Home() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
-
   useEffect(() => {
     selectRandomItem();
   }, []);
-
   const selectRandomItem = () => {
     if (availableItems.length === 0) {
       setGameOver(true);
@@ -139,7 +133,6 @@ export default function Home() {
     setAvailableItems(availableItems.filter((_, index) => index !== randomIndex));
     setCorrectBin(null);
   };
-
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
       const newLevel = Math.min(binLevels[binCategory] + 10, 100);
@@ -158,13 +151,14 @@ export default function Home() {
       setGameOver(true);
     }
   };
-
-  const handleTouchDrop = (item: WasteItemType, binCategory: string) => {
-    // Implement the logic to check if the item is over a bin
-    // For simplicity, we'll just call handleDrop
-    handleDrop(item, binCategory);
+  const handleTouchDrop = (item: WasteItemType) => {
+    setCurrentItem(item);
   };
-
+  const handleBinClick = (binCategory: string) => {
+    if (currentItem) {
+      handleDrop(currentItem, binCategory);
+    }
+  };
   const restartGame = () => {
     setBinLevels({
       "wet-waste": 0,
@@ -180,7 +174,6 @@ export default function Home() {
     setShowWinnerDialog(false);
     selectRandomItem();
   };
-
   if (gameOver) {
     return (
       <div className="game-container">
@@ -193,18 +186,18 @@ export default function Home() {
       </div>
     );
   }
-
   return (
     <div className="game-container">
       <h1 className="game-title">Waste Segregation Game</h1>
       <div className="score">Score: {score}</div>
-      {currentItem && <WasteItem {...currentItem} />}
+      {currentItem && <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />}
       <div className="bins-container">
         {categories.map(category => (
           <Bin 
             key={category} 
             category={category} 
             onDrop={handleDrop}
+            onClick={() => handleBinClick(category)}
             fillLevel={binLevels[category]}
             isCorrectBin={correctBin === category}
           />
