@@ -274,36 +274,44 @@ export default function Home() {
         <h2>Waste is smol pp, gots to sort it.</h2>
         <div className='info-content'>
           <div className='text-content'>
+          <p>
+              <em>"Be the change, you want to see in the world </em> ~ Mahatma Gandhi" ~ Piyush
+            </p>
             <p>
-              A major crisis in Indian metros is improper disposal of waste.
+              <strong>This game teaches you how to segregate waste, so that you can:</strong>
             </p>
             <ul>
               <li>
-                Mumbai generates over 11,000 tonnes of waste daily, with only
-                27% being processed.
+                <em>Reduce the burden on landfills</em>
               </li>
               <li>
-                Delhi struggles with overflowing landfills, some reaching
-                heights of over 65 meters.
+                <em>Improve recycling rates</em>
               </li>
               <li>
-                Bangalore's largest landfill, Mandur, received 1,800 tonnes of
-                mixed waste daily before its closure.
+                <em>Decrease environmental pollution</em>
+              </li>
+              <li>
+                <em>Create opportunities for waste-to-energy projects</em>
               </li>
             </ul>
+            
             <p>
-              This game teaches you how to segregate waste, so that you can:
+              <strong>A major crisis in Indian metros is improper disposal of waste. </strong>
             </p>
             <ul>
-              <li>Reduce the burden on landfills</li>
-              <li>Improve recycling rates</li>
-              <li>Decrease environmental pollution</li>
-              <li>Create opportunities for waste-to-energy projects</li>
+              <li>
+                <em>Mumbai generates over 11,000 tonnes of waste daily, with only
+                27% being processed.</em>
+              </li>
+              <li>
+                <em>Delhi struggles with overflowing landfills, some reaching
+                heights of over 65 meters.</em>
+              </li>
+              <li>
+                <em>Bangalore's largest landfill, Mandur, received 1,800 tonnes of
+                mixed waste daily before its closure.</em>
+              </li>
             </ul>
-            <p>
-              "Be the change, you want to see in the world ~ mahatma gandhi"{" "}
-            </p>
-            <p>~ Piyush</p>
           </div>
           <div className='image-container'>
             <img src='/trash-image-1.avif' alt='Waste Segregation' />
