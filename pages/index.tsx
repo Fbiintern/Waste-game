@@ -105,6 +105,8 @@ const wasteItems: WasteItemType[] = [
     { name: "Wax strips", category: "sanitary-waste" },
 ];
 const categories: string[] = ["wet-waste", "dry-waste", "hazardous-waste", "sanitary-waste", "e-waste"];
+
+
 export default function Home() {
   const [currentItem, setCurrentItem] = useState<WasteItemType | null>(null);
   const [score, setScore] = useState<number>(0);
@@ -119,9 +121,13 @@ export default function Home() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
+  const [completedBin, setCompletedBin] = useState<string | null>(null);
+  const [hasShownDialog, setHasShownDialog] = useState(false);
+
   useEffect(() => {
     selectRandomItem();
   }, []);
+
   const selectRandomItem = () => {
     if (availableItems.length === 0) {
       setGameOver(true);
@@ -133,6 +139,7 @@ export default function Home() {
     setAvailableItems(availableItems.filter((_, index) => index !== randomIndex));
     setCorrectBin(null);
   };
+
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
       const newLevel = Math.min(binLevels[binCategory] + 10, 100);
@@ -141,8 +148,11 @@ export default function Home() {
         [binCategory]: newLevel
       }));
       setScore(score + 1);
-      if (newLevel >= 100) {
+      
+      if (newLevel === 100 && !hasShownDialog) {
+        setCompletedBin(binCategory);
         setShowWinnerDialog(true);
+        setHasShownDialog(true);
       } else {
         selectRandomItem();
       }
@@ -151,15 +161,23 @@ export default function Home() {
       setGameOver(true);
     }
   };
+
   const handleTouchDrop = (item: WasteItemType) => {
     setCurrentItem(item);
   };
+
   const handleBinClick = (binCategory: string) => {
     if (currentItem) {
       handleDrop(currentItem, binCategory);
     }
   };
-  const restartGame = () => {
+
+  const handleContinuePlaying = () => {
+    setShowWinnerDialog(false);
+    selectRandomItem();
+  };
+
+  const handleRestartGame = () => {
     setBinLevels({
       "wet-waste": 0,
       "dry-waste": 0,
@@ -172,8 +190,11 @@ export default function Home() {
     setGameOver(false);
     setCorrectBin(null);
     setShowWinnerDialog(false);
+    setCompletedBin(null);
+    setHasShownDialog(false);
     selectRandomItem();
   };
+
   if (gameOver) {
     return (
       <div className="game-container">
@@ -182,30 +203,65 @@ export default function Home() {
         {correctBin && (
           <p>The correct bin was: {correctBin.replace('-', ' ').toUpperCase()}</p>
         )}
-        <button onClick={restartGame}>Play Again</button>
+        <button onClick={handleRestartGame}>Play Again</button>
       </div>
     );
   }
+
   return (
-    <div className="game-container">
-      <h1 className="game-title">Waste Segregation Game</h1>
-      <div className="score">Score: {score}</div>
-      {currentItem && <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />}
-      <div className="bins-container">
-        {categories.map(category => (
-          <Bin 
-            key={category} 
-            category={category} 
-            onDrop={handleDrop}
-            onClick={() => handleBinClick(category)}
-            fillLevel={binLevels[category]}
-            isCorrectBin={correctBin === category}
+    <div className="page-container">
+      <div className="game-container">
+        <h1 className="game-title">Waste Segregation Game</h1>
+        <div className="score">Score: {score}</div>
+        {currentItem && <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />}
+        <div className="bins-container">
+          {categories.map(category => (
+            <Bin 
+              key={category} 
+              category={category} 
+              onDrop={handleDrop}
+              onClick={() => handleBinClick(category)}
+              fillLevel={binLevels[category]}
+              isCorrectBin={correctBin === category}
+            />
+          ))}
+        </div>
+        {showWinnerDialog && completedBin && (
+          <WinnerDialog 
+            score={score} 
+            completedBin={completedBin}
+            onContinue={handleContinuePlaying}
+            onRestart={handleRestartGame}
           />
-        ))}
+        )}
       </div>
-      {showWinnerDialog && (
-        <WinnerDialog score={score} onClose={restartGame} />
-      )}
+
+      <div className="info-section">
+        <h2>Waste is smol pp, gots to sort it.</h2>
+        <div className="info-content">
+          <div className="text-content">
+            <p>A major crisis in Indian metros is improper disposal of waste.</p>
+            <ul>
+              <li>Mumbai generates over 11,000 tonnes of waste daily, with only 27% being processed.</li>
+              <li>Delhi struggles with overflowing landfills, some reaching heights of over 65 meters.</li>
+              <li>Bangalore's largest landfill, Mandur, received 1,800 tonnes of mixed waste daily before its closure.</li>
+            </ul>
+            <p>This game teaches you how to segregate waste, so that you can:</p>
+            <ul>
+              <li>Reduce the burden on landfills</li>
+              <li>Improve recycling rates</li>
+              <li>Decrease environmental pollution</li>
+              <li>Create opportunities for waste-to-energy projects</li>
+            </ul> 
+            <p>"Be the change, you want to see in the world ~ mahatma gandhi" </p>
+            <p>~ Piyush</p>
+          </div>
+          <div className="image-container">
+            <img src="/trash-image-1.avif" alt="Waste Segregation" />
+            <img src="/trash-image-2.jpg" alt="Waste Management" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
