@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
+import { useAccount } from 'wagmi';
+
 export type WasteItemType = {
   name: string;
   category: string;
@@ -130,6 +132,12 @@ export default function Home() {
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
   const [completedBin, setCompletedBin] = useState<string | null>(null);
   const [hasShownDialog, setHasShownDialog] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { address, isConnected } = useAccount();
+
+  useEffect(() => {
+    setIsLoggedIn(isConnected);
+  }, [isConnected]);
 
   useEffect(() => {
     selectRandomItem();
@@ -221,33 +229,44 @@ export default function Home() {
 
   return (
     <div className='page-container'>
-      <w3m-button />
       <div className='game-container'>
         <h1 className='game-title'>Waste Segregation Game</h1>
-
-        <div className='score'>Score: {score}</div>
-        {currentItem && (
-          <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
-        )}
-        <div className='bins-container'>
-          {categories.map((category) => (
-            <Bin
-              key={category}
-              category={category}
-              onDrop={handleDrop}
-              onClick={() => handleBinClick(category)}
-              fillLevel={binLevels[category]}
-              isCorrectBin={correctBin === category}
-            />
-          ))}
+        
+        <div className='wallet-button-container'>
+          <w3m-button balance="hide"/>
         </div>
-        {showWinnerDialog && completedBin && (
-          <WinnerDialog
-            score={score}
-            completedBin={completedBin}
-            onContinue={handleContinuePlaying}
-            onRestart={handleRestartGame}
-          />
+        
+        {isLoggedIn ? (
+          <>
+            <div className='score'>Score: {score}</div>
+            {currentItem && (
+              <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
+            )}
+            <div className='bins-container'>
+              {categories.map((category) => (
+                <Bin
+                  key={category}
+                  category={category}
+                  onDrop={handleDrop}
+                  onClick={() => handleBinClick(category)}
+                  fillLevel={binLevels[category]}
+                  isCorrectBin={correctBin === category}
+                />
+              ))}
+            </div>
+            {showWinnerDialog && completedBin && (
+              <WinnerDialog
+                score={score}
+                completedBin={completedBin}
+                onContinue={handleContinuePlaying}
+                onRestart={handleRestartGame}
+              />
+            )}
+          </>
+        ) : (
+          <div className='login-message'>
+            <p>Please connect your wallet to play the game.</p>
+          </div>
         )}
       </div>
 

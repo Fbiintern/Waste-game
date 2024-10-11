@@ -3,9 +3,9 @@
 import { wagmiAdapter, projectId } from "./index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
-import { mainnet, arbitrum } from "@reown/appkit/networks";
+import { optimism, base } from "@reown/appkit/networks";
 import React, { type ReactNode } from "react";
-import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
+import { WagmiProvider, type Config } from "wagmi";
 
 // Set up queryClient
 const queryClient = new QueryClient();
@@ -16,8 +16,8 @@ if (!projectId) {
 
 // Set up metadata
 const metadata = {
-  name: "appkit-example",
-  description: "AppKit Example",
+  name: "How Wasted Are You?",
+  description: "A fun game to learn how to segregate waste",
   url: "https://appkitexampleapp.com", // origin must match your domain & subdomain
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
@@ -26,35 +26,32 @@ const metadata = {
 const modal = createAppKit({
   adapters: [wagmiAdapter],
   projectId,
-  networks: [mainnet, arbitrum],
-  defaultNetwork: mainnet,
+  networks: [base, optimism],
+  defaultNetwork: base,
   metadata: metadata,
   features: {
+    email: true,
+    socials: ["farcaster", "x"],
     analytics: true,
   },
   themeMode: "light",
+  
+
 });
+
 
 function ContextProvider({
   children,
-  cookies,
 }: {
   children: ReactNode;
   cookies: string | null;
 }) {
-  const initialState = cookieToInitialState(
-    wagmiAdapter.wagmiConfig as Config,
-    cookies
-  );
-
   return (
-    <WagmiProvider
-      config={wagmiAdapter.wagmiConfig as Config}
-      initialState={initialState}
-    >
+    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
   );
 }
+
 
 export default ContextProvider;
