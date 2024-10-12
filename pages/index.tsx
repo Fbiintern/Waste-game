@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
+import GameOverDialog from "../components/GameOverDialog"; // Add this import
 import { useAccount } from 'wagmi';
 import { saveUserScore } from '../lib/userDataService'
 
@@ -240,12 +241,12 @@ export default function Home() {
     "e-waste": 0,
   });
   const [availableItems, setAvailableItems] = useState<WasteItemType[]>([...wasteItems]);
-  const [gameOver, setGameOver] = useState<boolean>(false);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
   const [completedBin, setCompletedBin] = useState<string | null>(null);
   const [hasShownDialog, setHasShownDialog] = useState(false);
   const { address, isConnected } = useAccount();
+  const [showGameOverDialog, setShowGameOverDialog] = useState(false);
 
   useEffect(() => {
     selectRandomItem();
@@ -253,7 +254,7 @@ export default function Home() {
 
   const selectRandomItem = () => {
     if (availableItems.length === 0) {
-      setGameOver(true);
+      setShowGameOverDialog(true); // Show game over dialog when no items are left
       return;
     }
     const randomIndex = Math.floor(Math.random() * availableItems.length);
@@ -267,7 +268,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 100, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
@@ -287,7 +288,7 @@ export default function Home() {
       }
     } else {
       setCorrectBin(item.category);
-      setGameOver(true);
+      setShowGameOverDialog(true); // Show the game over dialog
     }
   };
 
@@ -316,28 +317,13 @@ export default function Home() {
     });
     setScore(0);
     setAvailableItems([...wasteItems]);
-    setGameOver(false);
     setCorrectBin(null);
     setShowWinnerDialog(false);
     setCompletedBin(null);
     setHasShownDialog(false);
+    setShowGameOverDialog(false);
     selectRandomItem();
   };
-
-  if (gameOver) {
-    return (
-      <div className='game-container'>
-        <h1>Game Over</h1>
-        <p>Your score: {score}</p>
-        {correctBin && (
-          <p>
-            The correct bin was: {correctBin.replace("-", " ").toUpperCase()}
-          </p>
-        )}
-        <button onClick={handleRestartGame}>Play Again</button>
-      </div>
-    );
-  }
 
   return (
     <div className='page-container'>
@@ -366,6 +352,14 @@ export default function Home() {
                 />
               ))}
             </div>
+
+            {showGameOverDialog && (
+              <GameOverDialog
+                score={score}
+                correctBin={correctBin}
+                onPlayAgain={handleRestartGame}
+              />
+            )}
 
             {showWinnerDialog && completedBin && (
               <WinnerDialog
