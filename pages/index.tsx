@@ -3,6 +3,8 @@ import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
 import { useAccount } from 'wagmi';
+import { saveUserScore } from '../lib/userDataService'
+import { supabase } from '../lib/supabase'
 
 export type WasteItemType = {
   name: string;
@@ -124,20 +126,13 @@ export default function Home() {
     "sanitary-waste": 0,
     "e-waste": 0,
   });
-  const [availableItems, setAvailableItems] = useState<WasteItemType[]>([
-    ...wasteItems,
-  ]);
+  const [availableItems, setAvailableItems] = useState<WasteItemType[]>([...wasteItems]);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
   const [completedBin, setCompletedBin] = useState<string | null>(null);
   const [hasShownDialog, setHasShownDialog] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { address, isConnected } = useAccount();
-
-  useEffect(() => {
-    setIsLoggedIn(isConnected);
-  }, [isConnected]);
 
   useEffect(() => {
     selectRandomItem();
@@ -159,12 +154,13 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 50, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
       }));
-      setScore(score + 1);
+      const newScore = score + 1;
+      setScore(newScore);
 
       if (newLevel === 100 && !hasShownDialog) {
         setCompletedBin(binCategory);
@@ -172,6 +168,9 @@ export default function Home() {
         setHasShownDialog(true);
       } else {
         selectRandomItem();
+      }
+      if (address) {
+        saveUserScore(address, newScore);
       }
     } else {
       setCorrectBin(item.category);
@@ -212,6 +211,26 @@ export default function Home() {
     selectRandomItem();
   };
 
+  const testSupabase = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('user_scores')
+        .select('*')
+        .limit(1)
+
+      if (error) {
+        console.error('Supabase error:', error)
+        alert('Failed to connect to Supabase')
+      } else {
+        console.log('Supabase connection successful:', data)
+        alert('Successfully connected to Supabase')
+      }
+    } catch (error) {
+      console.error('Error testing Supabase:', error)
+      alert('An error occurred while testing Supabase connection')
+    }
+  }
+
   if (gameOver) {
     return (
       <div className='game-container'>
@@ -236,7 +255,9 @@ export default function Home() {
           <w3m-button balance="hide"/>
         </div>
         
-        {isLoggedIn ? (
+        <button onClick={testSupabase}>Test Supabase Connection</button>
+        
+        {isConnected ? (
           <>
             <div className='score'>Score: {score}</div>
             {currentItem && (
@@ -269,7 +290,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
       <div className='info-section'>
         <h2>Waste is smol pp, gots to sort it.</h2>
         <div className='info-content'>
