@@ -349,30 +349,22 @@ button:active {
   margin-top: 20px;
 }
 
-.play-again-button,
-.share-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+.button-container .play-again-button {
+  background-color: #4CAF50; /* Keep this green */
+
 }
 
-.play-again-button:hover,
-.share-button:hover {
-  background-color: #45a049;
+.button-container .play-again-button:hover {
+  background-color: #45a049; /* Darker green for hover */
 }
 
-.share-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button-container .share-button {
+  width: auto;
+  background-color: #7D50C3; /* New purple color */
 }
 
-.share-button img {
-  margin-right: 5px;
+.button-container .share-button:hover {
+  background-color: #6A3DAF; /* Darker purple for hover */
 }
 
 .game-over-dialog button {
@@ -400,4 +392,25 @@ button:active {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7D50C3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.share-button img {
+  margin-right: 8px; /* Increase this value to add more space */
+}
+
+.share-text {
+  margin-left: 8px; /* Add left margin to the text */
 }

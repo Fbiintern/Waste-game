@@ -10,7 +10,7 @@ interface GameOverDialogProps {
 const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain }) => {
   const shareOnWarpcast = () => {
     const shareText = `I picked up ${score} waste items, how many can you?`;
-    const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}`;
+    const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds%5B%5D=https://frame.town/fammywzm`;
     window.open(warpcastUrl, '_blank');
   };
 
@@ -20,7 +20,7 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
         <h2>Game Over</h2>
         <p>Your score: {score}</p>
         {correctBin && (
-          <p>The correct bin was: {correctBin.replace("-", " ").toUpperCase()}</p>
+          <p>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
         <div className="button-container">
           <button onClick={onPlayAgain} className="play-again-button">Play Again</button>
