@@ -334,10 +334,45 @@ button:active {
   rgba(0, 0, 0, 0.3);
   z-index: 1000;
   width: 400px;
+  text-align: center;
 }
 
 .game-over-dialog h2 {
   margin-top: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.play-again-button,
+.share-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.play-again-button:hover,
+.share-button:hover {
+  background-color: #45a049;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-button img {
+  margin-right: 5px;
 }
 
 .game-over-dialog button {
