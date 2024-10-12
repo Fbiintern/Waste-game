@@ -4,7 +4,6 @@ import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
 import { useAccount } from 'wagmi';
 import { saveUserScore } from '../lib/userDataService'
-import { supabase } from '../lib/supabase'
 
 export type WasteItemType = {
   name: string;
@@ -154,7 +153,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 50, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
@@ -211,26 +210,6 @@ export default function Home() {
     selectRandomItem();
   };
 
-  const testSupabase = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('user_scores')
-        .select('*')
-        .limit(1)
-
-      if (error) {
-        console.error('Supabase error:', error)
-        alert('Failed to connect to Supabase')
-      } else {
-        console.log('Supabase connection successful:', data)
-        alert('Successfully connected to Supabase')
-      }
-    } catch (error) {
-      console.error('Error testing Supabase:', error)
-      alert('An error occurred while testing Supabase connection')
-    }
-  }
-
   if (gameOver) {
     return (
       <div className='game-container'>
@@ -249,13 +228,11 @@ export default function Home() {
   return (
     <div className='page-container'>
       <div className='game-container'>
-        <h1 className='game-title'>Waste Segregation Game</h1>
+        <h1 className='game-title'>How wasted are you?!</h1>
         
         <div className='wallet-button-container'>
           <w3m-button balance="hide"/>
         </div>
-        
-        <button onClick={testSupabase}>Test Supabase Connection</button>
         
         {isConnected ? (
           <>
