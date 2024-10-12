@@ -268,7 +268,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 100, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
@@ -377,12 +377,9 @@ export default function Home() {
         )}
       </div>
       <div className='info-section'>
-        <h2>Waste is smol pp, gots to sort it.</h2>
+        <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
         <div className='info-content'>
           <div className='text-content'>
-          <p>
-              <em>"Be the change, you want to see in the world </em> ~ Mahatma Gandhi" ~ Piyush
-            </p>
             <p>
               <strong>This game teaches you how to segregate waste, so that you can:</strong>
             </p>
