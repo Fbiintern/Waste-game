@@ -9,7 +9,7 @@ interface GameOverDialogProps {
 
 const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain }) => {
   const shareOnWarpcast = () => {
-    const shareText = `I could collect ${score} waste items, try to beat my score!`;
+    const shareText = `I picked up ${score} waste items, how many can you?`;
     const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}`;
     window.open(warpcastUrl, '_blank');
   };
