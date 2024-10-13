@@ -4,7 +4,7 @@ import ContextProvider from "./config/Provider";
 export const Providers: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  return <ContextProvider cookies={null}>{children}</ContextProvider>;
+  return <ContextProvider>{children}</ContextProvider>;
 };
 
 export default Providers;
