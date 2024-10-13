@@ -88,7 +88,7 @@ body {
   border-radius: 5px;
   display: inline-block;
   cursor: move;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 @media (max-width: 768px) {
   .game-container {
@@ -107,14 +107,15 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     width: 80%; /* Increased from 50% to 80% */
-    margin: 30px auto; /* Center align the container */
+    margin: 30px auto;
+    margin-top: 10px; /* Center align the container */
   }
   .bin-wrapper {
     width: 100%;
     
   }
   .bin {
-    height: 160px; /* Increased from 120px to 150px */
+    height: 140px; /* Increased from 120px to 150px */
   }
   
   .bin-label {
@@ -139,11 +140,11 @@ button {
   background-color: #4CAF50;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
@@ -306,16 +307,6 @@ button:active {
   .image-container img {
     width: 45%;
   }
-}
-
-.test-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .test-button:hover {
