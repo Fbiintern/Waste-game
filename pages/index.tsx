@@ -3,8 +3,14 @@ import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
 import GameOverDialog from "../components/GameOverDialog"; // Add this import
-import { useAccount } from 'wagmi';
-import { saveUserScore } from '../lib/userDataService'
+import { useAccount } from "wagmi";
+import { saveUserScore } from "../lib/userDataService";
+import {
+  useFarcasterSigner,
+  useLogin,
+  useLogout,
+  usePrivy,
+} from "@privy-io/react-auth";
 
 export type WasteItemType = {
   name: string;
@@ -240,13 +246,17 @@ export default function Home() {
     "sanitary-waste": 0,
     "e-waste": 0,
   });
-  const [availableItems, setAvailableItems] = useState<WasteItemType[]>([...wasteItems]);
+  const [availableItems, setAvailableItems] = useState<WasteItemType[]>([
+    ...wasteItems,
+  ]);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
   const [completedBin, setCompletedBin] = useState<string | null>(null);
   const [hasShownDialog, setHasShownDialog] = useState(false);
   const { address, isConnected } = useAccount();
   const [showGameOverDialog, setShowGameOverDialog] = useState(false);
+
+  const { authenticated, login, logout, user } = usePrivy();
 
   useEffect(() => {
     selectRandomItem();
@@ -329,11 +339,14 @@ export default function Home() {
     <div className='page-container'>
       <div className='game-container'>
         <h1 className='game-title'>How wasted are you?!</h1>
-        
+
         <div className='wallet-button-container'>
-          <w3m-button balance="hide"/>
+          <button onClick={authenticated ? logout : login}>
+            {authenticated ? "Logout" : "Login"}
+          </button>
+          <div>{user?.farcaster?.displayName}</div>
         </div>
-        
+
         {isConnected ? (
           <>
             <div className='score'>Score: {score}</div>
@@ -381,7 +394,9 @@ export default function Home() {
         <div className='info-content'>
           <div className='text-content'>
             <p>
-              <strong>This game teaches you how to segregate waste, so that you can:</strong>
+              <strong>
+                This game teaches you how to segregate waste, so that you can:
+              </strong>
             </p>
             <ul>
               <li>
@@ -397,22 +412,30 @@ export default function Home() {
                 <em>Create opportunities for waste-to-energy projects</em>
               </li>
             </ul>
-            
+
             <p>
-              <strong>A major crisis in Indian metros is improper disposal of waste. </strong>
+              <strong>
+                A major crisis in Indian metros is improper disposal of waste.{" "}
+              </strong>
             </p>
             <ul>
               <li>
-                <em>Mumbai generates over 11,000 tonnes of waste daily, with only
-                27% being processed.</em>
+                <em>
+                  Mumbai generates over 11,000 tonnes of waste daily, with only
+                  27% being processed.
+                </em>
               </li>
               <li>
-                <em>Delhi struggles with overflowing landfills, some reaching
-                heights of over 65 meters.</em>
+                <em>
+                  Delhi struggles with overflowing landfills, some reaching
+                  heights of over 65 meters.
+                </em>
               </li>
               <li>
-                <em>Bangalore's largest landfill, Mandur, received 1,800 tonnes of
-                mixed waste daily before its closure.</em>
+                <em>
+                  Bangalore's largest landfill, Mandur, received 1,800 tonnes of
+                  mixed waste daily before its closure.
+                </em>
               </li>
             </ul>
           </div>

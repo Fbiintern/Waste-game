@@ -17,6 +17,8 @@
     "author": "Your Name",
     "license": "ISC",
     "dependencies": {
+        "@privy-io/react-auth": "^1.90.0",
+        "@privy-io/wagmi": "^0.2.12",
         "@reown/appkit": "^1.1.2",
         "@reown/appkit-adapter-wagmi": "^1.1.2",
         "@supabase/supabase-js": "^2.45.4",
