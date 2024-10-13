@@ -1,0 +1,115 @@
+.leaderboardContainer {
+  width: 100%;
+  max-width: 800px; /* Adjust this value as needed */
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toggleButton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 0 auto 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.3s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-self: center;
+  width: 100%;
+  
+}
+
+.toggleButton:hover {
+  background-color: #7D50C3;
+  transform: translateY(-2px);
+}
+
+.toggleButton:active {
+  transform: translateY(0);
+}
+
+.leaderboardContent {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboardContent h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+  padding: 12px;
+  text-align: center;
+}
+
+.leaderboardTable th:first-child,
+.leaderboardTable td:first-child {
+  text-align: left;
+}
+
+.leaderboardTable th:last-child,
+.leaderboardTable td:last-child {
+  text-align: right;
+}
+
+.leaderboardTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.leaderboardTable tr:last-child td {
+  border-bottom: none;
+}
+
+.rank {
+  font-weight: bold;
+  color: #4CAF50;
+  width: 40px;
+}
+
+.username {
+  font-weight: 500;
+  max-width: 200px; /* Adjust as needed */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+}
+
+.leaderboardTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.leaderboardTable tr:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
