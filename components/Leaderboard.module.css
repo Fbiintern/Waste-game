@@ -9,7 +9,7 @@
 }
 
 .toggleButton {
-  background-color: #4CAF50;
+  background-color: #7D50C3;
   border: none;
   color: white;
   padding: 12px 24px;
@@ -17,13 +17,15 @@
   text-decoration: none;
   display: block;
   font-size: 16px;
-  margin: 0 auto 15px;
+  margin-left: 10px;
+  margin-right: auto;
   cursor: pointer;
   border-radius: 15px;
   transition: background-color 0.3s, transform 0.1s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   align-self: center;
   width: 100%;
+  align-items: center;
   
 }
 
@@ -112,4 +114,15 @@
 .leaderboardTable tr:hover {
   background-color: #f0f0f0;
   transition: background-color 0.3s;
+}
+
+.currentUser {
+  background-color: rgba(76, 175, 80, 0.1);
+  font-weight: bold;
+}
+
+.youIndicator {
+  color: #4CAF50;
+  font-weight: bold;
+  margin-left: 5px;
 }
