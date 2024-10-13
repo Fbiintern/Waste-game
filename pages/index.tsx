@@ -262,6 +262,10 @@ export default function Home() {
     selectRandomItem();
   }, []);
 
+  useEffect(() => {
+    console.log("Auth state:", { authenticated, user });
+  }, [authenticated, user]);
+
   const selectRandomItem = () => {
     if (availableItems.length === 0) {
       setShowGameOverDialog(true); // Show game over dialog when no items are left
@@ -294,6 +298,7 @@ export default function Home() {
         selectRandomItem();
       }
       if (address) {
+        console.log("Saving score:", { address, newScore });
         saveUserScore(address, newScore);
       }
     } else {
