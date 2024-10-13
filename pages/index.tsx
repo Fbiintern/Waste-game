@@ -8,6 +8,7 @@ import { saveUserScore } from "../lib/userDataService";
 import {
   usePrivy,
 } from "@privy-io/react-auth";
+import { Leaderboard } from '../components/Leaderboard'
 
 
 export type WasteItemType = {
@@ -234,6 +235,7 @@ const categories: string[] = [
   "e-waste",
 ];
 
+
 export default function Home() {
   const [currentItem, setCurrentItem] = useState<WasteItemType | null>(null);
   const [score, setScore] = useState<number>(0);
@@ -387,6 +389,9 @@ export default function Home() {
           </div>
         )}
       </div>
+
+      <Leaderboard />
+      
       <div className='info-section'>
         <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
         <div className='info-content'>
