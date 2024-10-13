@@ -20,8 +20,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
       config={{
-        loginMethods: ["email", "wallet", "farcaster"],
+        loginMethods: ["email", "farcaster", "wallet"],
         appearance: {
+          walletList: ["detected_wallets", "rabby_wallet","coinbase_wallet", "rainbow"],
           theme: "light",
           accentColor: "#676FFF",
           logo: "https://your-logo-url",

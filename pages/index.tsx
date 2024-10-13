@@ -6,11 +6,9 @@ import GameOverDialog from "../components/GameOverDialog"; // Add this import
 import { useAccount } from "wagmi";
 import { saveUserScore } from "../lib/userDataService";
 import {
-  useFarcasterSigner,
-  useLogin,
-  useLogout,
   usePrivy,
 } from "@privy-io/react-auth";
+
 
 export type WasteItemType = {
   name: string;
