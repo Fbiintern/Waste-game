@@ -14,7 +14,6 @@ export const Leaderboard: React.FC = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isExpanded, setIsExpanded] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const { user } = usePrivy();
 
   useEffect(() => {
@@ -62,7 +61,7 @@ export const Leaderboard: React.FC = () => {
       </button>
       {isExpanded && (
         <div className={styles.leaderboardContent}>
-          <h3>Can you take the crown?</h3>
+          <h3>Top 10 Waste Sorters</h3>
           <table className={styles.leaderboardTable}>
             <thead>
               <tr>
@@ -72,7 +71,7 @@ export const Leaderboard: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {leaderboard.slice(0, showAll ? leaderboard.length : 5).map((entry, index) => (
+              {leaderboard.map((entry, index) => (
                 <tr key={index} className={isCurrentUser(entry.address) ? styles.currentUser : ''}>
                   <td className={styles.rank}>{index + 1}</td>
                   <td className={styles.address}>
@@ -84,14 +83,6 @@ export const Leaderboard: React.FC = () => {
               ))}
             </tbody>
           </table>
-          {leaderboard.length > 5 && (
-            <button 
-              className={styles.showMoreButton}
-              onClick={() => setShowAll(!showAll)}
-            >
-              {showAll ? 'Show Less' : 'Show More'}
-            </button>
-          )}
         </div>
       )}
     </div>

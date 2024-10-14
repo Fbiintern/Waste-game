@@ -300,18 +300,24 @@ export default function Home() {
         setCompletedBin(binCategory);
         setShowWinnerDialog(true);
         setHasShownDialog(true);
-      } else {
-        selectRandomItem();
+        
+        // Save the score when a bin is completed
+        if (authenticated && !isGuestMode && user?.wallet?.address) {
+          console.log("Saving score:", { address: user.wallet.address, newScore });
+          saveUserScore(user.wallet.address, newScore, user?.farcaster?.username || null);
+        }
       }
       
-      // Only save score if authenticated and not in guest mode
-      if (authenticated && !isGuestMode && user?.wallet?.address) {
-        console.log("Saving score:", { address: user.wallet.address, newScore });
-        saveUserScore(user.wallet.address, newScore, user?.farcaster?.username || null);
-      }
+      selectRandomItem();
     } else {
       setCorrectBin(item.category);
       setShowGameOverDialog(true);
+      
+      // Save the score when the game ends
+      if (authenticated && !isGuestMode && user?.wallet?.address) {
+        console.log("Saving score:", { address: user.wallet.address, score });
+        saveUserScore(user.wallet.address, score, user?.farcaster?.username || null);
+      }
     }
   };
 

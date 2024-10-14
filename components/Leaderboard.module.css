@@ -1,6 +1,6 @@
 .leaderboardContainer {
   width: 100%;
-  max-width: 800px; /* Adjust this value as needed */
+  max-width: 600px; /* Adjusted for top 10 list */
   margin: 20px auto;
   font-family: 'Arial', sans-serif;
   display: flex;
@@ -17,20 +17,17 @@
   text-decoration: none;
   display: block;
   font-size: 16px;
-  margin-left: 10px;
-  margin-right: auto;
+  margin: 0 auto 20px; /* Centered and added bottom margin */
   cursor: pointer;
   border-radius: 15px;
   transition: background-color 0.3s, transform 0.1s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  align-self: center;
   width: 100%;
-  align-items: center;
-  
+  max-width: 300px; /* Limit button width */
 }
 
 .toggleButton:hover {
-  background-color: #7D50C3;
+  background-color: #6A3CAD;
   transform: translateY(-2px);
 }
 
@@ -62,17 +59,7 @@
 .leaderboardTable th,
 .leaderboardTable td {
   padding: 12px;
-  text-align: center;
-}
-
-.leaderboardTable th:first-child,
-.leaderboardTable td:first-child {
   text-align: left;
-}
-
-.leaderboardTable th:last-child,
-.leaderboardTable td:last-child {
-  text-align: right;
 }
 
 .leaderboardTable th {
@@ -83,19 +70,15 @@
   font-size: 14px;
 }
 
-.leaderboardTable tr:last-child td {
-  border-bottom: none;
-}
-
 .rank {
   font-weight: bold;
   color: #4CAF50;
   width: 40px;
 }
 
-.username {
+.address {
   font-weight: 500;
-  max-width: 200px; /* Adjust as needed */
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -125,4 +108,17 @@
   color: #4CAF50;
   font-weight: bold;
   margin-left: 5px;
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 600px) {
+  .leaderboardTable th,
+  .leaderboardTable td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .address {
+    max-width: 120px;
+  }
 }
