@@ -27,13 +27,13 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
           <p>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
         {isGuestMode && (
-          <>
-            <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
-            <button onClick={login} className="login-button">Login to Save Score</button>
-          </>
+          <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
         )}
         <div className="button-container">
           <button onClick={onPlayAgain} className="play-again-button">Play Again</button>
+          {isGuestMode && (
+            <button onClick={login} className="login-button">Login to Save Score</button>
+          )}
           {!isGuestMode && (
             <button onClick={shareOnWarpcast} className="share-button">
               <Image src="/warpcast-logo.png" alt="Warpcast" width={20} height={20} />

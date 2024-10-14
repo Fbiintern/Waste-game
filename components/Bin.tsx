@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { WasteItemType } from '../pages/index';
 
 interface BinProps {
   category: string;
-  onDrop: (item: WasteItemType, category: string) => void;
+  onDrop: (item: WasteItemType, binCategory: string) => void;
   fillLevel: number;
   isCorrectBin: boolean;
-  onClick: () => void;
+  isTooltipActive: boolean;
+  onTooltipToggle: (category: string) => void;
 }
+
 const getBinColor = (category: string): string => {
   switch(category) {
     case 'wet-waste': return 'rgba(0, 128, 0, 0.3)'; // Green
@@ -18,6 +20,7 @@ const getBinColor = (category: string): string => {
     default: return 'rgba(200, 200, 200, 0.3)'; // Grey
   }
 };
+
 const getBinDescription = (category: string): string => {
   switch(category) {
     case 'wet-waste': return 'For biodegradable waste like food scraps and plant matter.';
@@ -28,16 +31,31 @@ const getBinDescription = (category: string): string => {
     default: return 'Unknown waste category';
   }
 };
-const Bin: React.FC<BinProps> = ({ category, onDrop, fillLevel, isCorrectBin, onClick }) => {
+
+const Bin: React.FC<BinProps> = ({ 
+  category, 
+  onDrop, 
+  fillLevel, 
+  isCorrectBin, 
+  isTooltipActive, 
+  onTooltipToggle 
+}) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const item = JSON.parse(e.dataTransfer.getData("text")) as WasteItemType;
     onDrop(item, category);
   };
+
+  const handleDoubleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onTooltipToggle(category);
+  };
+
   const binColor = getBinColor(category);
   const binDescription = getBinDescription(category);
+
   return (
-    <div className="bin-wrapper" onClick={onClick}>
+    <div className="bin-wrapper" onDoubleClick={handleDoubleClick}>
       <div 
         className={`bin ${isCorrectBin ? 'correct-bin' : ''}`}
         style={{ backgroundColor: binColor }}
@@ -47,10 +65,13 @@ const Bin: React.FC<BinProps> = ({ category, onDrop, fillLevel, isCorrectBin, on
         <div className="fill-level" style={{ height: `${fillLevel}%` }}></div>
         <div className="bin-label">{category.replace('-', ' ')}</div>
       </div>
-      <div className="tooltip">
-        <p>{binDescription}</p>
-      </div>
+      {isTooltipActive && (
+        <div className="tooltip">
+          <p>{binDescription}</p>
+        </div>
+      )}
     </div>
   );
 };
+
 export default Bin;

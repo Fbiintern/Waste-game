@@ -260,6 +260,9 @@ export default function Home() {
 
   const [isGuestMode, setIsGuestMode] = useState(false);
 
+  // Add this state near your other state declarations
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
   const enableGuestMode = () => {
     setIsGuestMode(true);
   };
@@ -306,7 +309,7 @@ export default function Home() {
           console.log("Saving score:", { address: user.wallet.address, newScore });
           saveUserScore(user.wallet.address, newScore, user?.farcaster?.username || null);
         }
-      }
+      } 
       
       selectRandomItem();
     } else {
@@ -354,6 +357,11 @@ export default function Home() {
     selectRandomItem();
   };
 
+  // Add this function to handle tooltip toggling
+  const handleTooltipToggle = (binCategory: string) => {
+    setActiveTooltip(prev => prev === binCategory ? null : binCategory);
+  };
+
   return (
     <div className='page-container'>
       <div className='game-container'>
@@ -386,9 +394,10 @@ export default function Home() {
                   key={category}
                   category={category}
                   onDrop={handleDrop}
-                  onClick={() => handleBinClick(category)}
                   fillLevel={binLevels[category]}
                   isCorrectBin={correctBin === category}
+                  isTooltipActive={activeTooltip === category}
+                  onTooltipToggle={handleTooltipToggle}
                 />
               ))}
             </div>
