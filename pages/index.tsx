@@ -2,14 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
-import GameOverDialog from "../components/GameOverDialog"; // Add this import
-import { useAccount } from "wagmi";
+import GameOverDialog from "../components/GameOverDialog";
 import { saveUserScore } from "../lib/userDataService";
 import {
   usePrivy,
 } from "@privy-io/react-auth";
 import { Leaderboard } from '../components/Leaderboard'
-
+import { FaInfoCircle } from 'react-icons/fa';
 
 export type WasteItemType = {
   name: string;
@@ -253,7 +252,6 @@ export default function Home() {
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
   const [completedBin, setCompletedBin] = useState<string | null>(null);
   const [hasShownDialog, setHasShownDialog] = useState(false);
-  const { address, isConnected } = useAccount();
   const [showGameOverDialog, setShowGameOverDialog] = useState(false);
 
   const { authenticated, login, logout, user } = usePrivy();
@@ -378,7 +376,15 @@ export default function Home() {
   return (
     <div className='page-container'>
       <div className='game-container'>
-        <h1 className='game-title'>How wasted are you?!</h1>
+        <h1 className='game-title'>
+          How Wasted Are You?!
+          <span className="info-icon">
+            <FaInfoCircle className="icon-small" />
+            <span className="tooltip">
+              A simple drag and drop game to educate about waste segregation. Double click on bins to see what goes in them. Fill a bin completely to win & Claim an NFT Keep playing to top the leaderboard.
+            </span>
+          </span>
+        </h1>
 
         <div className='wallet-button-container'>
           {!authenticated && !isGuestMode && (

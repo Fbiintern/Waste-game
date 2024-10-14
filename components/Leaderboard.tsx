@@ -61,7 +61,7 @@ export const Leaderboard: React.FC = () => {
       </button>
       {isExpanded && (
         <div className={styles.leaderboardContent}>
-          <h3>Top 10 Waste Sorters</h3>
+          <h3>Pick waste & rise to the top!</h3>
           <table className={styles.leaderboardTable}>
             <thead>
               <tr>

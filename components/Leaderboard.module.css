@@ -1,11 +1,12 @@
 .leaderboardContainer {
   width: 100%;
-  max-width: 600px; /* Adjusted for top 10 list */
+  max-width: 600px;
   margin: 20px auto;
   font-family: 'Arial', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 15px; /* Add padding for mobile */
 }
 
 .toggleButton {
@@ -17,13 +18,13 @@
   text-decoration: none;
   display: block;
   font-size: 16px;
-  margin: 0 auto 20px; /* Centered and added bottom margin */
+  margin: 0 auto 20px;
   cursor: pointer;
   border-radius: 15px;
   transition: background-color 0.3s, transform 0.1s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 300px; /* Limit button width */
+  max-width: 300px;
 }
 
 .toggleButton:hover {
@@ -110,8 +111,20 @@
   margin-left: 5px;
 }
 
-/* Responsive styles for mobile devices */
-@media (max-width: 600px) {
+/* Responsive styles */
+@media (max-width: 768px) {
+  .leaderboardContainer {
+    padding: 0 10px;
+  }
+
+  .leaderboardContent {
+    padding: 15px;
+  }
+
+  .leaderboardContent h3 {
+    font-size: 20px;
+  }
+
   .leaderboardTable th,
   .leaderboardTable td {
     padding: 8px;
@@ -120,5 +133,25 @@
 
   .address {
     max-width: 120px;
+  }
+
+  .rank {
+    width: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaderboardTable th,
+  .leaderboardTable td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .address {
+    max-width: 100px;
+  }
+
+  .rank {
+    width: 25px;
   }
 }
