@@ -307,7 +307,7 @@ export default function Home() {
       // Only save score if authenticated and not in guest mode
       if (authenticated && !isGuestMode && user?.wallet?.address) {
         console.log("Saving score:", { address: user.wallet.address, newScore });
-        saveUserScore(user.wallet.address, newScore, binCategory);
+        saveUserScore(user.wallet.address, newScore, user?.farcaster?.username || null);
       }
     } else {
       setCorrectBin(item.category);
