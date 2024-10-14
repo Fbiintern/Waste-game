@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { usePrivy } from '@privy-io/react-auth';
 
 interface GameOverDialogProps {
   score: number;
@@ -9,6 +10,8 @@ interface GameOverDialogProps {
 }
 
 const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain, isGuestMode }) => {
+  const { login } = usePrivy();
+
   const shareOnWarpcast = () => {
     const shareText = `I picked up ${score} waste items, how many can you?`;
     const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds%5B%5D=https://frame.town/fammywzm`;
@@ -24,7 +27,10 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
           <p>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
         {isGuestMode && (
-          <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
+          <>
+            <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
+            <button onClick={login} className="login-button">Login to Save Score</button>
+          </>
         )}
         <div className="button-container">
           <button onClick={onPlayAgain} className="play-again-button">Play Again</button>
