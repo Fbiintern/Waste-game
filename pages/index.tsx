@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
@@ -358,9 +358,22 @@ export default function Home() {
   };
 
   // Add this function to handle tooltip toggling
-  const handleTooltipToggle = (binCategory: string) => {
+  const handleTooltipToggle = useCallback((binCategory: string) => {
     setActiveTooltip(prev => prev === binCategory ? null : binCategory);
-  };
+  }, []);
+
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (!(event.target as Element).closest('.bin-wrapper')) {
+      setActiveTooltip(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   return (
     <div className='page-container'>
