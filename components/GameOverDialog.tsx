@@ -5,9 +5,10 @@ interface GameOverDialogProps {
   score: number;
   correctBin: string | null;
   onPlayAgain: () => void;
+  isGuestMode: boolean;
 }
 
-const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain }) => {
+const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain, isGuestMode }) => {
   const shareOnWarpcast = () => {
     const shareText = `I picked up ${score} waste items, how many can you?`;
     const warpcastUrl = `https://warpcast.com/~/compose?text=${encodeURIComponent(shareText)}&embeds%5B%5D=https://frame.town/fammywzm`;
@@ -22,12 +23,17 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
         {correctBin && (
           <p>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
+        {isGuestMode && (
+          <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
+        )}
         <div className="button-container">
           <button onClick={onPlayAgain} className="play-again-button">Play Again</button>
-          <button onClick={shareOnWarpcast} className="share-button">
-            <Image src="/warpcast-logo.png" alt="Warpcast" width={20} height={20} />
-            Share
-          </button>
+          {!isGuestMode && (
+            <button onClick={shareOnWarpcast} className="share-button">
+              <Image src="/warpcast-logo.png" alt="Warpcast" width={20} height={20} />
+              Share
+            </button>
+          )}
         </div>
       </div>
     </div>

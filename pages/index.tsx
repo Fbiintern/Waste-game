@@ -258,6 +258,12 @@ export default function Home() {
 
   const { authenticated, login, logout, user } = usePrivy();
 
+  const [isGuestMode, setIsGuestMode] = useState(false);
+
+  const enableGuestMode = () => {
+    setIsGuestMode(true);
+  };
+
   useEffect(() => {
     selectRandomItem();
   }, []);
@@ -297,13 +303,15 @@ export default function Home() {
       } else {
         selectRandomItem();
       }
-      if (address) {
-        console.log("Saving score:", { address, newScore });
-        saveUserScore(address, newScore);
+      
+      // Only save score if authenticated and not in guest mode
+      if (authenticated && !isGuestMode && user?.wallet?.address) {
+        console.log("Saving score:", { address: user.wallet.address, newScore });
+        saveUserScore(user.wallet.address, newScore, binCategory);
       }
     } else {
       setCorrectBin(item.category);
-      setShowGameOverDialog(true); // Show the game over dialog
+      setShowGameOverDialog(true);
     }
   };
 
@@ -346,13 +354,21 @@ export default function Home() {
         <h1 className='game-title'>How wasted are you?!</h1>
 
         <div className='wallet-button-container'>
-          <button onClick={authenticated ? logout : login}>
-            {authenticated ? "Logout" : "Login"}
-          </button>
-          <div>{user?.farcaster?.displayName}</div>
+          {!authenticated && !isGuestMode && (
+            <>
+              <button onClick={login}>Login</button>
+              <button onClick={enableGuestMode}>Play as Guest</button>
+            </>
+          )}
+          {authenticated && (
+            <>
+              <button onClick={logout}>Logout</button>
+              <div>{user?.farcaster?.displayName}</div>
+            </>
+          )}
         </div>
 
-        {isConnected ? (
+        {(authenticated || isGuestMode) ? (
           <>
             <div className='score'>Score: {score}</div>
             {currentItem && (
@@ -376,6 +392,7 @@ export default function Home() {
                 score={score}
                 correctBin={correctBin}
                 onPlayAgain={handleRestartGame}
+                isGuestMode={isGuestMode}
               />
             )}
 
@@ -385,12 +402,13 @@ export default function Home() {
                 completedBin={completedBin}
                 onContinue={handleContinuePlaying}
                 onRestart={handleRestartGame}
+                isGuestMode={isGuestMode}
               />
             )}
           </>
         ) : (
           <div className='login-message'>
-            <p>Please connect your wallet to play the game.</p>
+            <p>Please login or play as a guest to start the game.</p>
           </div>
         )}
       </div>
