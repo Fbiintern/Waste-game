@@ -374,137 +374,140 @@ export default function Home() {
   }, [handleClickOutside]);
 
   return (
-    <div className='page-container'>
-      <div className='game-container'>
-        <h1 className='game-title'>
-          How Wasted Are You?!
-          <span className="info-icon">
-            <FaInfoCircle className="icon-small" />
-            <span className="tooltip">
-              A simple drag and drop game to educate about waste segregation. Double click on bins to see what goes in them. Fill a bin completely to win & Claim an NFT Keep playing to top the leaderboard.
+    <>
+      <div className='game-background'></div>
+      <div className='page-container'>
+        <div className='game-container'>
+          <h1 className='game-title'>
+            How Wasted Are You?!
+            <span className="info-icon">
+              <FaInfoCircle className="icon-small" />
+              <span className="tooltip">
+                A simple drag and drop game to educate about waste segregation. Double click on bins to see what goes in them. Fill a bin completely to win & Claim an NFT Keep playing to top the leaderboard.
+              </span>
             </span>
-          </span>
-        </h1>
+          </h1>
 
-        <div className='wallet-button-container'>
-          {!authenticated && !isGuestMode && (
-            <>
-              <button onClick={login}>Login</button>
-              <button onClick={enableGuestMode}>Play as Guest</button>
-            </>
-          )}
-          {authenticated && (
-            <>
-              <button onClick={logout}>Logout</button>
-              <div>{user?.farcaster?.displayName}</div>
-            </>
-          )}
-        </div>
-
-        {(authenticated || isGuestMode) ? (
-          <>
-            <div className='score'>Score: {score}</div>
-            {currentItem && (
-              <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
+          <div className='wallet-button-container'>
+            {!authenticated && !isGuestMode && (
+              <>
+                <button onClick={login}>Login</button>
+                <button onClick={enableGuestMode}>Play as Guest</button>
+              </>
             )}
-            <div className='bins-container'>
-              {categories.map((category) => (
-                <Bin
-                  key={category}
-                  category={category}
-                  onDrop={handleDrop}
-                  fillLevel={binLevels[category]}
-                  isCorrectBin={correctBin === category}
-                  isTooltipActive={activeTooltip === category}
-                  onTooltipToggle={handleTooltipToggle}
+            {authenticated && (
+              <>
+                <button onClick={logout}>Logout</button>
+                <div>{user?.farcaster?.displayName}</div>
+              </>
+            )}
+          </div>
+
+          {(authenticated || isGuestMode) ? (
+            <>
+              <div className='score'>Score: {score}</div>
+              {currentItem && (
+                <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
+              )}
+              <div className='bins-container'>
+                {categories.map((category) => (
+                  <Bin
+                    key={category}
+                    category={category}
+                    onDrop={handleDrop}
+                    fillLevel={binLevels[category]}
+                    isCorrectBin={correctBin === category}
+                    isTooltipActive={activeTooltip === category}
+                    onTooltipToggle={handleTooltipToggle}
+                  />
+                ))}
+              </div>
+
+              {showGameOverDialog && (
+                <GameOverDialog
+                  score={score}
+                  correctBin={correctBin}
+                  onPlayAgain={handleRestartGame}
+                  isGuestMode={isGuestMode}
                 />
-              ))}
+              )}
+
+              {showWinnerDialog && completedBin && (
+                <WinnerDialog
+                  score={score}
+                  completedBin={completedBin}
+                  onContinue={handleContinuePlaying}
+                  onRestart={handleRestartGame}
+                  isGuestMode={isGuestMode}
+                />
+              )}
+            </>
+          ) : (
+            <div className='login-message'>
+              <p>Please login or play as a guest to start the game.</p>
             </div>
+          )}
+        </div>
 
-            {showGameOverDialog && (
-              <GameOverDialog
-                score={score}
-                correctBin={correctBin}
-                onPlayAgain={handleRestartGame}
-                isGuestMode={isGuestMode}
-              />
-            )}
+        <Leaderboard />
+        
+        <div className='info-section'>
+          <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
+          <div className='info-content'>
+            <div className='text-content'>
+              <p>
+                <strong>
+                  This game teaches you how to segregate waste, so that you can:
+                </strong>
+              </p>
+              <ul>
+                <li>
+                  <em>Reduce the burden on landfills</em>
+                </li>
+                <li>
+                  <em>Improve recycling rates</em>
+                </li>
+                <li>
+                  <em>Decrease environmental pollution</em>
+                </li>
+                <li>
+                  <em>Create opportunities for waste-to-energy projects</em>
+                </li>
+              </ul>
 
-            {showWinnerDialog && completedBin && (
-              <WinnerDialog
-                score={score}
-                completedBin={completedBin}
-                onContinue={handleContinuePlaying}
-                onRestart={handleRestartGame}
-                isGuestMode={isGuestMode}
-              />
-            )}
-          </>
-        ) : (
-          <div className='login-message'>
-            <p>Please login or play as a guest to start the game.</p>
-          </div>
-        )}
-      </div>
-
-      <Leaderboard />
-      
-      <div className='info-section'>
-        <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
-        <div className='info-content'>
-          <div className='text-content'>
-            <p>
-              <strong>
-                This game teaches you how to segregate waste, so that you can:
-              </strong>
-            </p>
-            <ul>
-              <li>
-                <em>Reduce the burden on landfills</em>
-              </li>
-              <li>
-                <em>Improve recycling rates</em>
-              </li>
-              <li>
-                <em>Decrease environmental pollution</em>
-              </li>
-              <li>
-                <em>Create opportunities for waste-to-energy projects</em>
-              </li>
-            </ul>
-
-            <p>
-              <strong>
-                A major crisis in Indian metros is improper disposal of waste.{" "}
-              </strong>
-            </p>
-            <ul>
-              <li>
-                <em>
-                  Mumbai generates over 11,000 tonnes of waste daily, with only
-                  27% being processed.
-                </em>
-              </li>
-              <li>
-                <em>
-                  Delhi struggles with overflowing landfills, some reaching
-                  heights of over 65 meters.
-                </em>
-              </li>
-              <li>
-                <em>
-                  Bangalore's largest landfill, Mandur, received 1,800 tonnes of
-                  mixed waste daily before its closure.
-                </em>
-              </li>
-            </ul>
-          </div>
-          <div className='image-container'>
-            <img src='/trash-image-1.avif' alt='Waste Segregation' />
-            <img src='/trash-image-2.jpg' alt='Waste Management' />
+              <p>
+                <strong>
+                  A major crisis in Indian metros is improper disposal of waste.{" "}
+                </strong>
+              </p>
+              <ul>
+                <li>
+                  <em>
+                    Mumbai generates over 11,000 tonnes of waste daily, with only
+                    27% being processed.
+                  </em>
+                </li>
+                <li>
+                  <em>
+                    Delhi struggles with overflowing landfills, some reaching
+                    heights of over 65 meters.
+                  </em>
+                </li>
+                <li>
+                  <em>
+                    Bangalore's largest landfill, Mandur, received 1,800 tonnes
+                    of mixed waste daily before its closure.
+                  </em>
+                </li>
+              </ul>
+            </div>
+            <div className='image-container'>
+              <img src='/trash-image-1.avif' alt='Waste Segregation' />
+              <img src='/trash-image-2.jpg' alt='Waste Management' />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

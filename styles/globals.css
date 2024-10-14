@@ -1,7 +1,8 @@
 body {
-  font-family: 'Inter ', sans-serif;
-  background-color: #f0f8ff;
+  font-family: 'Inter', sans-serif;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 .game-container {
   display: flex;
@@ -161,7 +162,7 @@ body {
   }
   
   .bin-label {
-    font-size: 1.2rem;
+    font-size: 1.rem;
   }
   .waste-item {
     font-size: 1.2rem;
@@ -278,7 +279,7 @@ button:active {
 .game-container {
   width: 100%;
   max-width: 800px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .info-section {
@@ -289,6 +290,7 @@ button:active {
   background-color: #f0f0f0;
   border-radius: 10px;
   box-sizing: border-box;
+  display: block;
 }
 
 .info-section-content {
@@ -312,8 +314,9 @@ button:active {
 /* Responsive styles */
 @media (max-width: 768px) {
   .info-section {
+    width: 90%; /* Adjust width for better mobile view */
     padding: 15px;
-    margin: 30px auto 0;
+    margin: 20px auto; /* Center horizontally */
   }
 
   .info-section h2 {
@@ -327,8 +330,9 @@ button:active {
 
 @media (max-width: 480px) {
   .info-section {
+    width: 95%; /* Further adjust width for smaller screens */
     padding: 10px;
-    margin: 20px auto 0;
+    margin: 20px auto; /* Keep it centered */
   }
 
   .info-section h2 {
@@ -567,4 +571,17 @@ img {
     width: 300px;
     height: 200px;
   }
+}
+.game-background {
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }

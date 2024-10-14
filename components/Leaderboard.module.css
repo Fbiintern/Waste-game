@@ -3,7 +3,7 @@
   max-width: 600px;
   margin: 20px auto;
   font-family: 'Arial', sans-serif;
-  display: flex;
+  display:block;
   flex-direction: column;
   align-items: center;
   padding: 0 15px; /* Add padding for mobile */
@@ -13,11 +13,11 @@
   background-color: #7D50C3;
   border: none;
   color: white;
-  padding: 12px 24px;
+  padding: 12px 0px;
   text-align: center;
   text-decoration: none;
-  display: block;
-  font-size: 16px;
+  display:flex;
+  font-size: 14px;
   margin: 0 auto 20px;
   cursor: pointer;
   border-radius: 15px;
@@ -25,6 +25,11 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 300px;
+  height: 100%;
+  max-height: 12px;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .toggleButton:hover {
@@ -114,11 +119,13 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .leaderboardContainer {
-    padding: 0 10px;
+    width: 90%;
+    padding: 15px;
+    margin: 20px auto;
   }
 
   .leaderboardContent {
-    padding: 15px;
+    padding: 10px;
   }
 
   .leaderboardContent h3 {
