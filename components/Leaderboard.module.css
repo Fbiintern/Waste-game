@@ -3,10 +3,10 @@
   max-width: 600px;
   margin: 20px auto;
   font-family: 'Arial', sans-serif;
-  display:block;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 15px; /* Add padding for mobile */
+  padding: 0 15px;
 }
 
 .toggleButton {
@@ -49,7 +49,7 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.leaderboardContent h3 {
+.leaderboardContent h2 {
   color: #333;
   margin-top: 0;
   margin-bottom: 20px;
@@ -128,7 +128,7 @@
     padding: 10px;
   }
 
-  .leaderboardContent h3 {
+  .leaderboardContent h2 {
     font-size: 20px;
   }
 

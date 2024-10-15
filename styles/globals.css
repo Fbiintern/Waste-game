@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Play', sans-serif;
   color: #333;
   margin: 0;
   padding: 0;
+  background-image: url('../public/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .game-container {
   display: flex;
@@ -572,7 +579,7 @@ img {
     height: 200px;
   }
 }
-.game-background {
+/*.game-background {
   background-color: #e5e5f7;
   opacity: 0.8;
   background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
@@ -584,4 +591,35 @@ img {
   top: 0;
   left: 0;
   z-index: -1;
+}
+*/
+.page-container {
+  padding-bottom: 60px; /* Add space for the navbar */
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding-top: 60px;
+    padding-bottom: 0;
+  }
+}
+
+.info-section {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.leaderboard-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.play-regular {
+  font-weight: 400;
+}
+
+.play-bold {
+  font-weight: 700;
 }

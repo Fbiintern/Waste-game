@@ -13,7 +13,6 @@ export const Leaderboard: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [isExpanded, setIsExpanded] = useState(false);
   const { user } = usePrivy();
 
   useEffect(() => {
@@ -53,37 +52,30 @@ export const Leaderboard: React.FC = () => {
 
   return (
     <div className={styles.leaderboardContainer}>
-      <button 
-        className={styles.toggleButton}
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        {isExpanded ? 'Hide Leaderboard' : 'Show Leaderboard'}
-      </button>
-      {isExpanded && (
-        <div className={styles.leaderboardContent}>
-          <table className={styles.leaderboardTable}>
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Score</th>
+      <div className={styles.leaderboardContent}>
+        <h2>Leaderboard</h2>
+        <table className={styles.leaderboardTable}>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Username</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderboard.map((entry, index) => (
+              <tr key={index} className={isCurrentUser(entry.address) ? styles.currentUser : ''}>
+                <td className={styles.rank}>{index + 1}</td>
+                <td className={styles.address}>
+                  {truncateAddress(entry.address)}
+                  {isCurrentUser(entry.address) && <span className={styles.youIndicator}> (You)</span>}
+                </td>
+                <td className={styles.score}>{entry.score}</td>
               </tr>
-            </thead>
-            <tbody>
-              {leaderboard.map((entry, index) => (
-                <tr key={index} className={isCurrentUser(entry.address) ? styles.currentUser : ''}>
-                  <td className={styles.rank}>{index + 1}</td>
-                  <td className={styles.address}>
-                    {truncateAddress(entry.address)}
-                    {isCurrentUser(entry.address) && <span className={styles.youIndicator}> (You)</span>}
-                  </td>
-                  <td className={styles.score}>{entry.score}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
