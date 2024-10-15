@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { usePrivy } from '@privy-io/react-auth';
+import styles from '../pages/Home.module.css';
 
 interface GameOverDialogProps {
   score: number;
@@ -30,14 +31,14 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
           <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
         )}
         <div className="button-container">
-          <button onClick={onPlayAgain} className="play-again-button">Play Again</button>
+          <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
           {isGuestMode && (
-            <button onClick={login} className="login-button">Login to Save Score</button>
+            <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
           )}
           {!isGuestMode && (
-            <button onClick={shareOnWarpcast} className="share-button">
-              <Image src="/warpcast-logo.png" alt="Warpcast" width={20} height={20} />
-              Share
+            <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.purple} ${styles.smallButton}`}>
+              <Image src="/warpcast-logo.png" alt="Warpcast" width={10} height={10} />
+              <span className="share-text">Share</span>
             </button>
           )}
         </div>

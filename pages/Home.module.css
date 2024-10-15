@@ -133,3 +133,11 @@
     font-size: 18px;
   }
 }
+
+.smallButton {
+  font-size: 8px;
+  padding: 2px 6px;
+  line-height: 1;
+  min-height: 20px;
+  min-width: 40px;
+}

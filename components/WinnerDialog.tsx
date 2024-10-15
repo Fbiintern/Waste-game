@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePrivy } from '@privy-io/react-auth';
+import Image from 'next/image';
+import styles from '../pages/Home.module.css';
 
 interface WinnerDialogProps {
   score: number;
@@ -27,15 +29,16 @@ const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onCont
         {isGuestMode && (
           <>
             <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
-            <button onClick={login} className="login-button">Login to Save Score</button>
+            <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
           </>
         )}
         <div className="dialog-buttons">
-          <button onClick={onContinue}>Keep Playing</button>
-          <button onClick={onRestart}>Restart Game</button>
+          <button onClick={onContinue} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Keep Playing</button>
+          <button onClick={onRestart} className={`${styles.gameButton} ${styles.red} ${styles.smallButton}`}>Restart Game</button>
           {!isGuestMode && (
-            <button onClick={shareOnWarpcast} className="share-button">
-              Share on Warpcast
+            <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>
+              <Image src="/warpcast-logo.png" alt="Warpcast" width={10} height={10} />
+              <span className="share-text">Share</span>
             </button>
           )}
         </div>
