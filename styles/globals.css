@@ -5,7 +5,7 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
-  background-image: url('../public/background.jpg');
+  background-image: url('https://github.com/314yush/this-damn-game/blob/main/public/background.jpg?raw=true');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

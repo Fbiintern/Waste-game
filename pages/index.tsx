@@ -391,68 +391,41 @@ export default function Home() {
               <span className="info-icon">
                 <FaInfoCircle className="icon-small" />
                 <span className="tooltip">
-                  A simple drag and drop game to educate about waste segregation. Double click on bins to see what goes in them. Fill a bin completely to win & Claim an NFT Keep playing to top the leaderboard.
+                  A simple drag and drop game to educate about waste segregation.
                 </span>
               </span>
             </h1>
 
-            <div className='wallet-button-container'>
-              {!authenticated && !isGuestMode && (
-                <>
+            {!authenticated && !isGuestMode ? (
+              <>
+                <div className='wallet-button-container'>
                   <button className={`${styles.gameButton} ${styles.green}`} onClick={login}>Login</button>
                   <button className={`${styles.gameButton} ${styles.orange}`} onClick={enableGuestMode}>Play as Guest</button>
-                </>
-              )}
-              {authenticated && (
-                <>
-                  <button className={`${styles.gameButton} ${styles.red}`} onClick={logout}>Logout</button>
-                  <div>{user?.farcaster?.displayName}</div>
-                </>
-              )}
-            </div>
-
-            {(authenticated || isGuestMode) ? (
-              <>
-                <div className='score'>Score: {score}</div>
-                {currentItem && (
-                  <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
-                )}
-                <div className='bins-container'>
-                  {categories.map((category) => (
-                    <Bin
-                      key={category}
-                      category={category}
-                      onDrop={handleDrop}
-                      fillLevel={binLevels[category]}
-                      isCorrectBin={correctBin === category}
-                      isTooltipActive={activeTooltip === category}
-                      onTooltipToggle={handleTooltipToggle}
-                    />
-                  ))}
                 </div>
-
-                {showGameOverDialog && (
-                  <GameOverDialog
-                    score={score}
-                    correctBin={correctBin}
-                    onPlayAgain={handleRestartGame}
-                    isGuestMode={isGuestMode}
-                  />
-                )}
-
-                {showWinnerDialog && completedBin && (
-                  <WinnerDialog
-                    score={score}
-                    completedBin={completedBin}
-                    onContinue={handleContinuePlaying}
-                    onRestart={handleRestartGame}
-                    isGuestMode={isGuestMode}
-                  />
-                )}
+                <div className='login-message'>
+                  <p>Please login or play as a guest to start the game.</p>
+                </div>
+                <div className={styles.howToPlay}>
+                  <h3>How to Play:</h3>
+                  <p>1. Drag waste items to the correct bins</p>
+                  <p>2. Double-tap bins to see what goes in them</p>
+                  <p>3. Fill a bin completely to win!</p>
+                </div>
               </>
             ) : (
-              <div className='login-message'>
-                <p>Please login or play as a guest to start the game.</p>
+              <>
+                {/* Game components go here */}
+                {/* For example: */}
+                {/* <GameBoard /> */}
+                {/* <WasteItems /> */}
+                {/* <Bins /> */}
+              </>
+            )}
+
+            {authenticated && (
+              <div className={styles.logoutContainer}>
+                <button className={`${styles.gameButton} ${styles.red}`} onClick={logout}>Logout</button>
+                <div>{user?.farcaster?.displayName}</div>
               </div>
             )}
           </div>
