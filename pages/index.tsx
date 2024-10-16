@@ -401,6 +401,13 @@ export default function Home() {
                 <>
                   <button className={`${styles.gameButton} ${styles.green}`} onClick={login}>Login</button>
                   <button className={`${styles.gameButton} ${styles.orange}`} onClick={enableGuestMode}>Play as Guest</button>
+                  <div className={styles.howToPlay}>
+                    <h3>How to Play:</h3>
+                    <p>1. Drag and drop waste items into the correct bins.</p>
+                    <p>2. Double-click on bins to see what goes in them.</p>
+                    <p>3. Fill a bin completely to win and claim an NFT.</p>
+                    <p>4. Keep playing to top the leaderboard!</p>
+                  </div>
                 </>
               )}
               {authenticated && (
