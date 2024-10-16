@@ -3,7 +3,7 @@ import WasteItem from "../components/WasteItem";
 import Bin from "../components/Bin";
 import WinnerDialog from "../components/WinnerDialog";
 import GameOverDialog from "../components/GameOverDialog";
-import { saveUserScore } from "../lib/userDataService";
+import { saveUserScore, saveFarcasterUsername } from "../lib/userDataService";
 import {
   usePrivy,
 } from "@privy-io/react-auth";
@@ -380,6 +380,12 @@ export default function Home() {
     setCurrentPage(page);
   };
 
+  useEffect(() => {
+    if (authenticated && user?.wallet?.address && user?.farcaster?.username) {
+      saveFarcasterUsername(user.wallet.address, user.farcaster.username)
+    }
+  }, [authenticated, user])
+
   return (
     <>
       <div className='game-background'></div>
@@ -401,13 +407,6 @@ export default function Home() {
                 <>
                   <button className={`${styles.gameButton} ${styles.green}`} onClick={login}>Login</button>
                   <button className={`${styles.gameButton} ${styles.orange}`} onClick={enableGuestMode}>Play as Guest</button>
-                  <div className={styles.howToPlay}>
-                    <h3>How to Play:</h3>
-                    <p>1. Drag and drop waste items into the correct bins.</p>
-                    <p>2. Double-click on bins to see what goes in them.</p>
-                    <p>3. Fill a bin completely to win and claim an NFT.</p>
-                    <p>4. Keep playing to top the leaderboard!</p>
-                  </div>
                 </>
               )}
               {authenticated && (
@@ -456,6 +455,16 @@ export default function Home() {
                     isGuestMode={isGuestMode}
                   />
                 )}
+
+                <div className={styles.howToPlaySmall}>
+                  <h3>How to Play:</h3>
+                  <ol>
+                    <li>Drag and drop waste items into the correct bins.</li>
+                    <li>Double-click on bins to see what goes in them.</li>
+                    <li>Fill a bin completely to win and claim an NFT.</li>
+                    <li>Keep playing to top the leaderboard!</li>
+                  </ol>
+                </div>
               </>
             ) : (
               <div className='login-message'>
