@@ -228,7 +228,10 @@ const wasteItems: WasteItemType[] = [
   { name: "Disposable diapers", category: "sanitary-waste" },
   { name: "Used sanitary pads", category: "sanitary-waste" },
 ];
-const categories: string[] = [
+
+type WasteCategory = 'wet-waste' | 'dry-waste' | 'hazardous-waste' | 'sanitary-waste' | 'e-waste';
+
+const categories: WasteCategory[] = [
   "wet-waste",
   "dry-waste",
   "hazardous-waste",

@@ -1,16 +1,18 @@
 import React from 'react';
 import { WasteItemType } from '../pages/index';
 
+type WasteCategory = 'wet-waste' | 'dry-waste' | 'hazardous-waste' | 'sanitary-waste' | 'e-waste';
+
 interface BinProps {
-  category: string;
-  onDrop: (item: WasteItemType, binCategory: string) => void;
+  category: WasteCategory;
+  onDrop: (item: WasteItemType, binCategory: WasteCategory) => void;
   fillLevel: number;
   isCorrectBin: boolean;
   isTooltipActive: boolean;
-  onTooltipToggle: (category: string) => void;
+  onTooltipToggle: (category: WasteCategory) => void;
 }
 
-const getBinColor = (category: string): string => {
+const getBinColor = (category: WasteCategory): string => {
   switch(category) {
     case 'wet-waste': return 'rgba(0, 128, 0, 0.5)'; // Green
     case 'dry-waste': return 'rgba(0, 0, 255, 0.5)'; // Blue
@@ -21,7 +23,7 @@ const getBinColor = (category: string): string => {
   }
 };
 
-const getBinDescription = (category: string): string => {
+const getBinDescription = (category: WasteCategory): string => {
   switch(category) {
     case 'wet-waste': return 'For biodegradable waste like food scraps and plant matter.';
     case 'dry-waste': return 'For recyclable materials like paper, plastic, and metal.';
