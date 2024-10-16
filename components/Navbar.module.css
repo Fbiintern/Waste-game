@@ -1,3 +1,4 @@
+
 .navbar {
   background-color: #f0f0f0;
   padding: 0;
@@ -7,6 +8,7 @@
   right: 0;
   z-index: 1000;
   height: 50px;
+  font-family: 'Play';
 }
 
 .navbar ul {
