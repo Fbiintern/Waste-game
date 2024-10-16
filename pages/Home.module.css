@@ -688,18 +688,12 @@
 .stackedButtons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.fullWidth {
-  width: 100%;
-}
-
-/* Existing button styles */
-.gameButton {
-  /* ... (keep existing styles) ... */
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 300px;
+  margin: 0 auto;
+  align-content: center;
 }
 
 .green {
@@ -801,10 +795,6 @@
   width: 100%;
 }
 
-/* Existing button styles */
-.gameButton {
-  /* ... (keep existing styles) ... */
-}
 
 .green {
   background-color: #4CAF50;
@@ -847,4 +837,18 @@
 
 .shareText {
   margin-left: 8px;
+}
+.green {
+  background: repeating-linear-gradient( 45deg, #54d440, #54d440 5px, #52cc3f 5px, #52cc3f 10px);
+  box-shadow: 0 6px 0 #348628, 0 8px 1px 1px rgba(0,0,0,.3), 0 10px 0 5px #2a6d20, 0 12px 0 5px #39822e, 0 15px 0 5px #1d4c16, 0 15px 1px 6px rgba(0,0,0,.3);
+}
+
+.red {
+  background: repeating-linear-gradient( 45deg, #ff4f4c, #ff4f4c 5px, #ff4643 5px, #ff4643 10px);
+  box-shadow: 0 6px 0 #ae2725, 0 8px 1px 1px rgba(0,0,0,.3), 0 10px 0 5px #831614, 0 12px 0 5px #a33634, 0 15px 0 5px #631716, 0 15px 1px 6px rgba(0,0,0,.3);
+}
+
+.purple {
+  background: repeating-linear-gradient( 45deg, #8e44ad, #8e44ad 5px, #8941a8 5px, #8941a8 10px);
+  box-shadow: 0 6px 0 #6c3483, 0 8px 1px 1px rgba(0,0,0,.3), 0 10px 0 5px #522764, 0 12px 0 5px #5b2c6f, 0 15px 0 5px #4a235a, 0 15px 1px 6px rgba(0,0,0,.3);
 }
