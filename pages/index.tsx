@@ -12,6 +12,7 @@ import { FaInfoCircle } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import styles from './Home.module.css'; // Make sure to create this CSS module file
 
+
 export type WasteItemType = {
   name: string;
   category: string;
@@ -295,7 +296,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 100, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
@@ -462,7 +463,7 @@ export default function Home() {
                 <div className={styles.howToPlaySmall}>
                   <h3>How to Play:</h3>
                   <ol>
-                    <li>Drag and drop waste items into the correct bins.</li>
+                    <li>Hold to Drag and drop waste items into the correct bins.</li>
                     <li>Double-click on bins to see what goes in them.</li>
                     <li>Fill a bin completely to win and claim an NFT.</li>
                     <li>Keep playing to top the leaderboard!</li>
@@ -478,61 +479,57 @@ export default function Home() {
         )}
 
         {currentPage === 'about' && (
-          <div className='info-section'>
-            <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
-            <div className='info-content'>
-              <div className='text-content'>
-                <p>
-                  <strong>
-                    This game teaches you how to segregate waste, so that you can:
-                  </strong>
-                </p>
-                <ul>
-                  <li>
-                    <em>Reduce the burden on landfills</em>
-                  </li>
-                  <li>
-                    <em>Improve recycling rates</em>
-                  </li>
-                  <li>
-                    <em>Decrease environmental pollution</em>
-                  </li>
-                  <li>
-                    <em>Create opportunities for waste-to-energy projects</em>
-                  </li>
-                </ul>
+          <div className="info-section">
+            <h1>Waste is smol pp, gotta clean it ~ @314yush</h1>
+            
+            <section className="government-policy">
+              <h2>🏛️ India's efforts towards waste segregation</h2>
+              <p>Buckle up! Here's how India's government is turning trash into treasure:</p>
+              <ul>
+                <li><strong>Swachh Bharat Mission (2014):</strong> The ultimate clean-up party! Aiming for a spotless India with 100% pro waste management.</li>
+                <li><strong>Solid Waste Management Rules (2016):</strong> The "Sort It Out" saga! Waste now comes in three exciting flavors:
+                  <ul>
+                    <li>🥕 Biodegradable: Nature's snack</li>
+                    <li>📦 Dry waste: Reduce, Reuse, Recycle squad</li>
+                    <li>☢️ Domestic hazardous: The "Handle with Care" bunch</li>
+                  </ul>
+                </li>
+                <li><strong>Extended Producer Responsibility (EPR):</strong> Companies, time to clean up your act! They make it, they take it (back).</li>
+                <li><strong>Plastic Waste Management Rules (2016):</strong> Saying "Ta-ta!" to troublesome plastics. Multi-layered plastic, we're looking at you!</li>
+              </ul>
+              <div className="image-container">
+                <img src="/path-to-image1.jpg" alt="Swachh Bharat Mission in action" />
+                <img src="/path-to-image2.jpg" alt="Colorful waste segregation bins" />
+              </div>
+            </section>
 
-                <p>
-                  <strong>
-                    A major crisis in Indian metros is improper disposal of waste.{" "}
-                  </strong>
-                </p>
-                <ul>
-                  <li>
-                    <em>
-                      Mumbai generates over 11,000 tonnes of waste daily, with only
-                      27% being processed.
-                    </em>
-                  </li>
-                  <li>
-                    <em>
-                      Delhi struggles with overflowing landfills, some reaching
-                      heights of over 65 meters.
-                    </em>
-                  </li>
-                  <li>
-                    <em>
-                      Bangalore's largest landfill, Mandur, received 1,800 tonnes
-                      of mixed waste daily before its closure.
-                    </em>
-                  </li>
-                </ul>
+            <section className="fun-facts">
+              <h2>🎭 Trash Trivia: Impress Your Friends!</h2>
+              <ul>
+                <li>India generates enough waste annually to fill 3,000 Olympic-sized swimming pools! 🏊‍♂️</li>
+                <li>A whopping 70% of India's plastic waste is recycled. Take that, global average of 9%! 💪</li>
+                <li>Bengaluru, the 'Garden City', produces about 5,000 tonnes of waste daily. That's the weight of 1,000 elephants! 🐘</li>
+                <li>India's first garbage café in Ambikapur offers free meals in exchange for plastic waste. Yum! 🍽️</li>
+              </ul>
+            </section>
+
+            <section className="game-benefits">
+              <h2>🎮 Why "How Wasted Are You?!" Is Your New Superhero Training</h2>
+              <p>Ready to save the world, one trash sort at a time? Here's why our game is your secret weapon:</p>
+              <ul>
+                <li><strong>🧠 Trash Sorting Jedi:</strong> Master the art of waste segregation without getting your hands dirty. Yay for virtual learning!</li>
+                <li><strong>📚 Policy Buff:</strong> Understand government trash talk (aka policies) while having fun. Who said learning can't be entertaining?</li>
+                <li><strong>🌍 Earth's BFF:</strong> Learn how your sorting skills can make landfills less landfill-y and the environment more smiley.</li>
+                <li><strong>🏆 Leaderboard Legend:</strong> Compete, conquer, and spread the word. Your high score could inspire the next waste warrior!</li>
+                <li><strong>🦸 Habit Hero:</strong> Develop a trash-sorting sixth sense. Soon, you'll be categorizing waste in your sleep (in a good way)!</li>
+              </ul>
+              <div className="image-container">
+                <img src="/path-to-image3.jpg" alt="Excited player mastering waste segregation" />
+                <img src="/path-to-image4.jpg" alt="Before/After of clean environment thanks to proper waste management" />
               </div>
-              <div className='image-container'>
-                <img src='/trash-image-1.avif' alt='Waste Segregation' />
-                <img src='/trash-image-2.jpg' alt='Waste Management' />
-              </div>
-            </div>
+            </section>
+
+            
           </div>
         )}
 

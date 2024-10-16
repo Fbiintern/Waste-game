@@ -3,16 +3,17 @@
 import { PrivyProvider } from "@privy-io/react-auth";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createConfig, WagmiProvider } from "@privy-io/wagmi";
-import { base } from "viem/chains";
+import { base, mainnet } from "viem/chains";
 import { http } from "viem";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
 
   const config = createConfig({
-    chains: [base],
+    chains: [base, mainnet],
     transports: {
       [base.id]: http(),
+      [mainnet.id]: http(),
     },
   });
 
@@ -22,7 +23,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       config={{
         loginMethods: ["email", "farcaster", "wallet"],
         appearance: {
-          walletList: ["detected_wallets", "rabby_wallet","coinbase_wallet", "rainbow"],
+          walletList: ["detected_wallets", "rabby_wallet","coinbase_wallet", "rainbow", "wallet_connect"],
           theme: "light",
           accentColor: "#676FFF",
           logo: "https://github.com/314yush/this-damn-game/blob/main/public/Frame%201321315999.png?raw=true",

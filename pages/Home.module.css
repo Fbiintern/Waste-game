@@ -204,3 +204,68 @@
     font-size: 14px;
   }
 }
+.dialogButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.gameButton {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.smallButton {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.red {
+  background-color: #f44336;
+  color: white;
+}
+
+.purple {
+  background-color: #7D50C3;
+  color: white;
+}
+
+.shareText {
+  margin-left: 8px;
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
