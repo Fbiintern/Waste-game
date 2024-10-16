@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { usePrivy } from '@privy-io/react-auth';
 import styles from '../pages/Home.module.css';
 
@@ -26,15 +25,15 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
   };
 
   return (
-    <div className="game-over-overlay">
-      <div className="game-over-dialog">
-        <h2>Game Over</h2>
-        <p>Your score: {score}</p>
+    <div className={styles.dialogOverlay}>
+      <div className={styles.dialogContent}>
+        <h2 className={styles.dialogText}>Game Over</h2>
+        <p className={styles.dialogText}>Your score: {score}</p>
         {correctBin && (
-          <p>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
+          <p className={styles.dialogText}>The correct bin was: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
         {isGuestMode && (
-          <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
+          <p className={`${styles.dialogText} guest-mode-warning`}>Playing as guest. Your score won't be saved.</p>
         )}
         <div className="button-container">
           <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
@@ -43,7 +42,6 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
           )}
           {!isGuestMode && (
             <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.purple} ${styles.smallButton}`}>
-              
               <span className="share-text">Share</span>
             </button>
           )}

@@ -373,3 +373,21 @@
 .smallGameButton.green:hover {
   box-shadow: 0 2px 0 #348628, 0 3px 1px 1px rgba(0,0,0,.3), 0 4px 0 3px #2a6d20, 0 5px 0 3px #39822e, 0 6px 0 3px #1d4c16, 0 6px 1px 4px rgba(0,0,0,.3);
 }
+
+
+.dialogContent {
+  background-image: url('https://t4.ftcdn.net/jpg/03/99/33/25/360_F_399332563_K1WLYkrQyb3EdX4210Depd3sdKLmzHMA.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.dialogText {
+  color: #ffffff; /* Adjust text color for better visibility */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
+}

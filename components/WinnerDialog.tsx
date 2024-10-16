@@ -28,10 +28,10 @@ const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onCont
 
   return (
     <div className={styles.dialogOverlay}>
-      <div className={styles.dialog}>
-        <h2 className={styles.dialogTitle}>Congratulations!</h2>
+      <div className={styles.dialogContent}>
+        <h2 className={`${styles.dialogTitle} ${styles.dialogText}`}>Congratulations!</h2>
         <p className={styles.dialogText}>You've filled the {completedBin.replace('-', ' ')} bin!</p>
-        <p className={styles.dialogScore}>Your current score: {score}</p>
+        <p className={`${styles.dialogScore} ${styles.dialogText}`}>Your current score: {score}</p>
         {isGuestMode && (
           <button onClick={handleLogin} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>
             Login to Save Score

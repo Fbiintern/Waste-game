@@ -295,7 +295,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 100, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
