@@ -35,3 +35,21 @@ export const saveUserScore = async (userId: string, score: number, farcasterUser
     console.log('New score not higher than current best. Score not updated.')
   }
 }
+
+export const saveFarcasterUsername = async (address: string, farcasterUsername: string | null) => {
+  try {
+    const { error } = await supabase
+      .from('leaderboard')
+      .upsert(
+        { 
+          address, 
+          farcaster_username: farcasterUsername
+        }, 
+        { onConflict: 'address' }
+      )
+
+    if (error) throw error
+  } catch (err) {
+    console.error('Error saving Farcaster username:', err)
+  }
+}
