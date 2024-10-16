@@ -269,3 +269,582 @@
   padding: 10px;
   margin-bottom: 20px;
 }
+
+.gameOverDialog {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.dialogButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gameButton.dialog {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  min-width: 120px;
+  text-shadow: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.gameButton.dialog.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.gameButton.dialog.orange {
+  background-color: #FFA500;
+  color: white;
+}
+
+.gameButton.dialog.purple {
+  background-color: #7D50C3;
+  color: white;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shareText {
+  margin-left: 8px;
+}
+
+@media (max-width: 480px) {
+  .gameOverDialog {
+    padding: 15px;
+  }
+
+  .dialogTitle {
+    font-size: 24px;
+  }
+
+  .dialogText, .dialogScore {
+    font-size: 16px;
+  }
+
+  .gameButton.dialog {
+    font-size: 14px;
+    padding: 8px 16px;
+    min-width: 100px;
+  }
+}
+
+.centered-play-again {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .centered-play-again {
+    margin-top: 0.5rem;
+  }
+}
+
+.centeredPlayAgain {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dialog {
+  background-color: #f0f0f0; /* Change this to your desired color */
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.gameOverDialog {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.dialogButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gameButton.dialog {
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  min-width: 120px;
+  text-shadow: none;
+  box-shadow: none;
+  margin: 0;
+}
+
+.gameButton.dialog.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.gameButton.dialog.orange {
+  background-color: #FFA500;
+  color: white;
+}
+
+.gameButton.dialog.purple {
+  background-color: #7D50C3;
+  color: white;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shareText {
+  margin-left: 8px;
+}
+
+@media (max-width: 480px) {
+  .gameOverDialog {
+    padding: 15px;
+  }
+
+  .dialogTitle {
+    font-size: 24px;
+  }
+
+  .dialogText, .dialogScore {
+    font-size: 16px;
+  }
+
+  .gameButton.dialog {
+    font-size: 14px;
+    padding: 8px 16px;
+    min-width: 100px;
+  }
+}
+
+.centered-play-again {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .centered-play-again {
+    margin-top: 0.5rem;
+  }
+}
+
+.centeredPlayAgain {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.dialog {
+  background-color: #f0f0f0; /* Change this to your desired color */
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.gameOverDialog {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.dialogButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialogContent {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.stackedButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Existing button styles */
+.gameButton {
+  /* ... (keep existing styles) ... */
+}
+
+.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.red {
+  background-color: #f44336;
+  color: white;
+}
+
+.purple {
+  background-color: #7D50C3;
+  color: white;
+}
+
+.orange {
+  background-color: #FFA500;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .dialogContent {
+    padding: 15px;
+  }
+
+  .dialogTitle {
+    font-size: 20px;
+  }
+
+  .dialogText, .dialogScore {
+    font-size: 16px;
+  }
+
+  .gameButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialogContent {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dialogTitle {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialogText {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.dialogScore {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.guestModeWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.stackedButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Existing button styles */
+.gameButton {
+  /* ... (keep existing styles) ... */
+}
+
+.green {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.red {
+  background-color: #f44336;
+  color: white;
+}
+
+.purple {
+  background-color: #7D50C3;
+  color: white;
+}
+
+.orange {
+  background-color: #FFA500;
+  color: white;
+}
+
+@media (max-width: 480px) {
+  .dialogContent {
+    padding: 15px;
+  }
+
+  .dialogTitle {
+    font-size: 20px;
+  }
+
+  .dialogText, .dialogScore {
+    font-size: 16px;
+  }
+
+  .gameButton {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+.shareText {
+  margin-left: 8px;
+}

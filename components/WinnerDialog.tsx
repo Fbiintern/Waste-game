@@ -1,6 +1,5 @@
 import React from 'react';
 import { usePrivy } from '@privy-io/react-auth';
-import Image from 'next/image';
 import styles from '../pages/Home.module.css';
 
 interface WinnerDialogProps {
@@ -21,24 +20,23 @@ const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onCont
   };
 
   return (
-    <div className="dialog-overlay">
-      <div className="dialog">
-        <h2 className="dialog-title">Congratulations!</h2>
-        <p className="dialog-text">You've filled the {completedBin.replace('-', ' ')} bin!</p>
-        <p className="dialog-score">Score: {score}</p>
+    <div className={styles.dialogOverlay}>
+      <div className={styles.dialogContent}>
+        <h2 className={styles.dialogTitle}>Congratulations!</h2>
+        <p className={styles.dialogText}>You've filled the {completedBin.replace('-', ' ')} bin!</p>
+        <p className={styles.dialogScore}>Score: {score}</p>
         {isGuestMode && (
-          <div className="guest-mode-warning">
+          <div className={styles.guestModeWarning}>
             <p>Playing as guest. Your score won't be saved.</p>
             <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
           </div>
         )}
-        <div className="dialog-buttons">
-          <button onClick={onContinue} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Keep Playing</button>
-          <button onClick={onRestart} className={`${styles.gameButton} ${styles.red} ${styles.smallButton}`}>Restart Game</button>
+        <div className={styles.stackedButtons}>
+          <button onClick={onContinue} className={`${styles.gameButton} ${styles.green} ${styles.fullWidth}`}>Keep Playing</button>
+          <button onClick={onRestart} className={`${styles.gameButton} ${styles.red} ${styles.fullWidth}`}>Restart Game</button>
           {!isGuestMode && (
-            <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.red} ${styles.smallButton}`}>
-              <Image src="/warpcast-logo.png" alt="Warpcast" width={16} height={16} />
-              <span>Share</span>
+            <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.purple} ${styles.fullWidth}`}>
+              Share
             </button>
           )}
         </div>

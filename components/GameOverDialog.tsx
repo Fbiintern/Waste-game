@@ -27,20 +27,24 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
         {correctBin && (
           <p>Correct bin: {correctBin.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
         )}
-        {isGuestMode && (
-          <div className="guest-mode-warning">
-            <p>Playing as guest. Your score won't be saved.</p>
-            <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
-          </div>
-        )}
-        <div className="dialog-buttons">
-          <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
-          {!isGuestMode && (
+        {isGuestMode ? (
+          <>
+            <div className="guest-mode-warning">
+              <p>Playing as guest. Your score won't be saved.</p>
+              <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
+            </div>
+            <div className={styles.centeredPlayAgain}>
+              <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
+            </div>
+          </>
+        ) : (
+          <div className="dialog-buttons">
+            <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
             <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.red} ${styles.smallButton}`}>
               <span>Share</span>
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
