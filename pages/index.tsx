@@ -485,60 +485,75 @@ export default function Home() {
 
         {currentPage === 'about' && (
           <div className='info-section'>
-            <h2>"Waste is smol pp, gots to sort it." ~ @314yush</h2>
-            <div className='info-content'>
-              <div className='text-content'>
-                <p>
-                  <strong>
-                    This game teaches you how to segregate waste, so that you can:
-                  </strong>
-                </p>
-                <ul>
-                  <li>
-                    <em>Reduce the burden on landfills</em>
-                  </li>
-                  <li>
-                    <em>Improve recycling rates</em>
-                  </li>
-                  <li>
-                    <em>Decrease environmental pollution</em>
-                  </li>
-                  <li>
-                    <em>Create opportunities for waste-to-energy projects</em>
-                  </li>
-                </ul>
+            <h1 className="about-title">Trash Talk: India's Waste Saga</h1>
 
-                <p>
-                  <strong>
-                    A major crisis in Indian metros is improper disposal of waste.{" "}
-                  </strong>
-                </p>
-                <ul>
-                  <li>
-                    <em>
-                      Mumbai generates over 11,000 tonnes of waste daily, with only
-                      27% being processed.
-                    </em>
-                  </li>
-                  <li>
-                    <em>
-                      Delhi struggles with overflowing landfills, some reaching
-                      heights of over 65 meters.
-                    </em>
-                  </li>
-                  <li>
-                    <em>
-                      Bangalore's largest landfill, Mandur, received 1,800 tonnes
-                      of mixed waste daily before its closure.
-                    </em>
-                  </li>
-                </ul>
+            <section className="about-section">
+              <h2>The Great Indian Garbage Party</h2>
+              <p>
+                Picture this: India generates more trash than Bollywood produces movies! We're talking about 62 million tonnes of waste annually. That's like filling up the Taj Mahal with garbage 690 times every year. Yikes!
+              </p>
+              <p>
+                Our cities are basically playing a never-ending game of Tetris with trash, and spoiler alert: we're not winning. Only about 70% of our waste gets collected, and a measly 30% gets treated. The rest? It's living its best life in open dumps, probably planning world domination.
+              </p>
+              <div className="image-container">
+                <img src="https://img.staticmb.com/mbcontent/images/crop/uploads/2022/12/Solid-Waste-Management-in-India%20_0_1200.jpg" alt="Mountain of garbage" />
+                <img src="https://media.licdn.com/dms/image/C5112AQE6ad6qqPkseQ/article-cover_image-shrink_600_2000/0/1564039604044?e=2147483647&v=beta&t=AvVCtKIBTjSGzikleZHUKlSV94ETUlVKpT7-VRRob0o" alt="Overflowing garbage bin" />
               </div>
-              <div className='image-container'>
-                <img src='/trash-image-1.avif' alt='Waste Segregation' />
-                <img src='/trash-image-2.jpg' alt='Waste Management' />
+            </section>
+
+            <section className="about-section">
+              <h2>India's Trash-tastic Initiatives</h2>
+              <p>
+                But wait! India isn't just sitting around watching this trash fire burn. We've got some cool plans up our sleeve:
+              </p>
+              <ul>
+                <li>Swachh Bharat Abhiyan: Because nothing says "I love my country" like picking up litter.</li>
+                <li>Smart Cities Mission: Making our cities so smart, they'll learn to take out their own trash!</li>
+                <li>Plastic Waste Management Rules: Telling plastic it's not fantastic anymore.</li>
+              </ul>
+              <p>
+                These initiatives are like India's version of the Avengers, but instead of fighting Thanos, they're battling garbage. Earth's mightiest heroes? More like Earth's tidiest heroes!
+              </p>
+              <div className="image-container">
+                <img src="https://i.ytimg.com/vi/0JTc08LQYio/maxresdefault.jpg" alt="Swachh Bharat campaign" />
+                <img src="https://greensutra.in/wp-content/uploads/2021/09/Ban-on-Single-Use-Plastic.jpeg" alt="Plastic ban initiative" />
               </div>
-            </div>
+            </section>
+
+            <section className="about-section">
+              <h2>How This Game Saves the World (Sort of)</h2>
+              <p>
+                Now, you might be thinking, "How does playing with virtual trash help?" Well, dear waste warrior, here's how:
+              </p>
+              <ul>
+                <li>Brain Training: You'll become a waste-sorting ninja in no time.</li>
+                <li>Awareness Level: Over 9000! You'll start seeing the world in wet, dry, and e-waste.</li>
+                <li>Habit Formation: Soon, you'll be sorting trash in your sleep (not recommended, but impressive).</li>
+              </ul>
+              <p>
+                Plus, every time you play, a landfill somewhere sheds a happy tear. Probably.
+              </p>
+              <div className="image-container">
+                <img src="https://cdn.downtoearth.org.in/library/large/2018-10-15/0.15112900_1539588449_waste-segregation.jpg" alt="Person sorting waste" />
+                <img src="https://www.fabhotels.com/blog/wp-content/uploads/2019/03/New-Delhi.jpg" alt="Clean city street" />
+              </div>
+            </section>
+
+            <section className="about-section">
+              <h2>Eco-Awesome Trivia: India's Green Victories</h2>
+              <ul>
+                <li>Sikkim became India's first fully organic state in 2016. Talk about a natural glow-up!</li>
+                <li>The world's largest solar park is in Karnataka, India. It's so bright, even the sun is jealous!</li>
+                <li>Mawlynnong in Meghalaya is known as Asia's cleanest village. It's so clean, you could eat off the streets (but please don't).</li>
+                <li>India's first recycled plastic road was built in Chennai in 2002. Who knew trash could pave the way to the future?</li>
+                <li>The Coimbatore City Municipal Corporation turns food waste into biofuel for its buses. Talk about a tasty ride!</li>
+                <li>Bengaluru's 'Wake Up, Clean Up' campaign involves 10,000 volunteers cleaning the city every week. That's what we call a clean sweep!</li>
+              </ul>
+              <div className="image-container">
+                <img src="https://nomadicweekends.com/blog/wp-content/uploads/2019/10/m-3.jpg" alt="Mawlynnong - Asia's cleanest village" />
+                <img src="https://media.licdn.com/dms/image/C4E12AQH9grzwrnBtTg/article-cover_image-shrink_600_2000/0/1520057612051?e=2147483647&v=beta&t=1nA8pMiMIlgQUV5JmKnKkuardbeBUrzVJZlhmknUfZI" alt="Plastic waste road in India" />
+              </div>
+            </section>
           </div>
         )}
 
