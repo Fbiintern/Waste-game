@@ -9,10 +9,16 @@ interface WinnerDialogProps {
   onContinue: () => void;
   onRestart: () => void;
   isGuestMode: boolean;
+  updateGuestMode: (newGuestMode: boolean) => void;
 }
 
-const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onContinue, onRestart, isGuestMode }) => {
+const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onContinue, onRestart, isGuestMode, updateGuestMode }) => {
   const { login } = usePrivy();
+
+  const handleLogin = async () => {
+    await login();
+    updateGuestMode(false);
+  };
 
   const shareOnWarpcast = () => {
     const shareText = `I filled the ${completedBin.replace('-', ' ')} bin and scored ${score} points in How Wasted Are You?!`;
@@ -21,27 +27,25 @@ const WinnerDialog: React.FC<WinnerDialogProps> = ({ score, completedBin, onCont
   };
 
   return (
-    <div className="dialog-overlay">
-      <div className="dialog">
-        <h2>Congratulations!</h2>
-        <p>You've filled the {completedBin.replace('-', ' ')} bin!</p>
-        <p>Your current score: {score}</p>
+    <div className={styles.dialogOverlay}>
+      <div className={styles.dialog}>
+        <h2 className={styles.dialogTitle}>Congratulations!</h2>
+        <p className={styles.dialogText}>You've filled the {completedBin.replace('-', ' ')} bin!</p>
+        <p className={styles.dialogScore}>Your current score: {score}</p>
         {isGuestMode && (
-          <>
-            <p className="guest-mode-warning">Playing as guest. Your score won't be saved.</p>
-            <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
-          </>
+          <button onClick={handleLogin} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>
+            Login to Save Score
+          </button>
         )}
-        <div className="dialog-buttons">
-          <button onClick={onContinue} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Keep Playing</button>
-          <button onClick={onRestart} className={`${styles.gameButton} ${styles.red} ${styles.smallButton}`}>Restart Game</button>
-          {!isGuestMode && (
-            <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>
-              <Image src="/warpcast-logo.png" alt="Warpcast" width={10} height={10} />
-              <span className="share-text">Share</span>
-            </button>
-          )}
+        <div className={styles.dialogButtons}>
+          <button onClick={onContinue} className={`${styles.gameButton} ${styles.green}`}>Keep Playing</button>
+          <button onClick={onRestart} className={`${styles.gameButton} ${styles.red}`}>Restart Game</button>
         </div>
+        {!isGuestMode && (
+          <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.purple} ${styles.smallButton}`}>
+            <span className={styles.shareText}>Share on Warpcast</span>
+          </button>
+        )}
       </div>
     </div>
   );

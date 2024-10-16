@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css?family=Carter+One');
 
 .gameButton {
@@ -8,7 +7,7 @@
   text-decoration: none !important;
   outline: none !important;
   font-family: 'Carter One', sans-serif;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 1.5em;
   letter-spacing: .1em;
   text-shadow: 2px 2px 1px #0066a2, -2px 2px 1px #0066a2, 2px -2px 1px #0066a2, -2px -2px 1px #0066a2, 0px 2px 1px #0066a2, 0px -2px 1px #0066a2, 0px 4px 1px #004a87, 2px 4px 1px #004a87, -2px 4px 1px  #004a87;
@@ -24,7 +23,6 @@
 }
 
 .gameButton {
-  font-size: 16px;
   line-height: 1.2em;
   padding: 6px 12px 8px;
   margin: 10px 10px 20px;
@@ -136,7 +134,7 @@
 }
 
 .smallButton {
-  font-size: 8px;
+  font-size: 14px;
   padding: 2px 6px;
   line-height: 1;
   min-height: 20px;
@@ -204,4 +202,174 @@
   .howToPlaySmall h3 {
     font-size: 14px;
   }
+}
+
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: rgb(252, 252, 252);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.dialogTitle {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.dialogText {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.dialogScore {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4a4a4a;
+  margin-bottom: 16px;
+}
+
+.guestModeWarning {
+  font-size: 14px;
+  color: #ff6b6b;
+  margin-bottom: 16px;
+}
+
+.dialogButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.gameButton {
+  /* ... (keep existing styles) ... */
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 8px 4px;
+  min-width: 120px;
+}
+
+.fullWidth {
+  width: 60%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.shareText {
+  margin-left: 8px;
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    width: 90%;
+    padding: 20px;
+    background-color: #ebebeb;      
+  }
+
+  .dialogTitle {
+    font-size: 24px;
+  }
+
+  .dialogText, .dialogScore {
+    font-size: 16px;
+  }
+
+  .gameButton {
+    font-size: 14px;
+    padding: 8px 16px;
+    min-width: 100px;
+  }
+
+  .dialogButtons {
+    flex-direction: column;
+  }
+
+  .dialogButtons .gameButton {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+.smallGameButton {
+  font-family: 'Carter One', sans-serif;
+  font-size: 14px;
+  line-height: 1.2em;
+  padding: 4px 8px 6px; 
+  margin: 5px 5px 10px;
+  text-shadow: 1px 1px 1px #0066a2, -1px 1px 1px #0066a2, 1px -1px 1px #0066a2, -1px -1px 1px #0066a2, 0px 1px 1px #0066a2, 0px -1px 1px #0066a2, 0px 2px 1px #004a87, 1px 2px 1px #004a87, -1px 2px 1px  #004a87;
+  border-bottom: 2px solid rgba(16, 91, 146, 0.5);
+  border-top: 2px solid rgba(255,255,255,.3);
+  border-radius: 6px;
+  box-shadow: 0 1px 0 #266b91, 0 2px 1px 1px rgba(0,0,0,.3), 0 4px 0 3px #12517d, 0 5px 0 3px #1a6b9a, 0 6px 0 3px #0c405e, 0 6px 1px 4px rgba(0,0,0,.3);
+}
+
+.smallGameButton:hover {
+  top: 1px;
+  box-shadow: 0 1px 0 #266b91, 0 1px 1px 1px rgba(0,0,0,.3), 0 3px 0 3px #12517d, 0 4px 0 3px #1a6b9a, 0 5px 0 3px #0c405e, 0 5px 1px 4px rgba(0,0,0,.3);
+}
+
+.smallGameButton::before {
+  height: 8%;
+  width: 35%;
+  right: 11%;
+  top: -2%;
+}
+
+.smallGameButton::after {
+  height: 8%;
+  width: 4%;
+  right: 4%;
+  top: -2%;
+}
+
+.smallGameButton.orange {
+  box-shadow: 0 3px 0 #b76113, 0 4px 1px 1px rgba(0,0,0,.3), 0 5px 0 3px #75421f, 0 6px 0 3px #8a542b, 0 7px 0 3px #593116, 0 7px 1px 4px rgba(0,0,0,.3);
+  text-shadow: 1px 1px 1px #e78700, -1px 1px 1px #e78700, 1px -1px 1px #e78700, -1px -1px 1px #e78700, 0px 1px 1px #e78700, 0px -1px 1px #e78700, 0px 2px 1px #c96100, 1px 2px 1px #c96100, -1px 2px 1px  #c96100;
+}
+
+.smallGameButton.orange:hover {
+  box-shadow: 0 2px 0 #b76113, 0 3px 1px 1px rgba(0,0,0,.3), 0 4px 0 3px #75421f, 0 5px 0 3px #8a542b, 0 6px 0 3px #593116, 0 6px 1px 4px rgba(0,0,0,.3);
+}
+
+.smallGameButton.red {
+  box-shadow: 0 3px 0 #ae2725, 0 4px 1px 1px rgba(0,0,0,.3), 0 5px 0 3px #831614, 0 6px 0 3px #a33634, 0 7px 0 3px #631716, 0 7px 1px 4px rgba(0,0,0,.3);
+  text-shadow: 1px 1px 1px #d72d21, -1px 1px 1px #d72d21, 1px -1px 1px #d72d21, -1px -1px 1px #d72d21, 0px 1px 1px #d72d21, 0px -1px 1px #d72d21, 0px 2px 1px #930704, 1px 2px 1px #930704, -1px 2px 1px  #930704;
+}
+
+.smallGameButton.red:hover {
+  box-shadow: 0 2px 0 #ae2725, 0 3px 1px 1px rgba(0,0,0,.3), 0 4px 0 3px #831614, 0 5px 0 3px #a33634, 0 6px 0 3px #631716, 0 6px 1px 4px rgba(0,0,0,.3);
+}
+
+.smallGameButton.green {
+  box-shadow: 0 3px 0 #348628, 0 4px 1px 1px rgba(0,0,0,.3), 0 5px 0 3px #2a6d20, 0 6px 0 3px #39822e, 0 7px 0 3px #1d4c16, 0 7px 1px 4px rgba(0,0,0,.3);
+  text-shadow: 1px 1px 1px #348628, -1px 1px 1px #348628, 1px -1px 1px #348628, -1px -1px 1px #348628, 0px 1px 1px #348628, 0px -1px 1px #348628, 0px 2px 1px #1d4c16, 1px 2px 1px #1d4c16, -1px 2px 1px #1d4c16;
+}
+
+.smallGameButton.green:hover {
+  box-shadow: 0 2px 0 #348628, 0 3px 1px 1px rgba(0,0,0,.3), 0 4px 0 3px #2a6d20, 0 5px 0 3px #39822e, 0 6px 0 3px #1d4c16, 0 6px 1px 4px rgba(0,0,0,.3);
 }

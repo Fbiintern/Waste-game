@@ -295,7 +295,7 @@ export default function Home() {
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
-      const newLevel = Math.min(binLevels[binCategory] + 10, 100);
+      const newLevel = Math.min(binLevels[binCategory] + 100, 100);
       setBinLevels((prev) => ({
         ...prev,
         [binCategory]: newLevel,
@@ -389,6 +389,10 @@ export default function Home() {
     }
   }, [authenticated, user])
 
+  const updateGuestMode = (newGuestMode: boolean) => {
+    setIsGuestMode(newGuestMode);
+  };
+
   return (
     <>
       <div className='game-background'></div>
@@ -408,13 +412,13 @@ export default function Home() {
             <div className='wallet-button-container'>
               {!authenticated && !isGuestMode && (
                 <>
-                  <button className={`${styles.gameButton} ${styles.green}`} onClick={login}>Login</button>
-                  <button className={`${styles.gameButton} ${styles.orange}`} onClick={enableGuestMode}>Play as Guest</button>
+                  <button className={`${styles.smallGameButton} ${styles.green}`} onClick={login}>Login</button>
+                  <button className={`${styles.smallGameButton} ${styles.orange}`} onClick={enableGuestMode}>Play as Guest</button>
                 </>
               )}
               {authenticated && (
                 <>
-                  <button className={`${styles.gameButton} ${styles.red}`} onClick={logout}>Logout</button>
+                  <button className={`${styles.smallGameButton} ${styles.red}`} onClick={logout}>Logout</button>
                   <div>{user?.farcaster?.displayName}</div>
                 </>
               )}
@@ -446,6 +450,7 @@ export default function Home() {
                     correctBin={correctBin}
                     onPlayAgain={handleRestartGame}
                     isGuestMode={isGuestMode}
+                    updateGuestMode={updateGuestMode}  // Make sure this line is present
                   />
                 )}
 
@@ -456,6 +461,7 @@ export default function Home() {
                     onContinue={handleContinuePlaying}
                     onRestart={handleRestartGame}
                     isGuestMode={isGuestMode}
+                    updateGuestMode={updateGuestMode}
                   />
                 )}
 

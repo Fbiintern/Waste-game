@@ -8,10 +8,16 @@ interface GameOverDialogProps {
   correctBin: string | null;
   onPlayAgain: () => void;
   isGuestMode: boolean;
+  updateGuestMode: (newGuestMode: boolean) => void;
 }
 
-const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain, isGuestMode }) => {
+const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPlayAgain, isGuestMode, updateGuestMode }) => {
   const { login } = usePrivy();
+
+  const handleLogin = async () => {
+    await login();
+    updateGuestMode(false);
+  };
 
   const shareOnWarpcast = () => {
     const shareText = `I picked up ${score} waste items, how many can you?`;
@@ -33,11 +39,11 @@ const GameOverDialog: React.FC<GameOverDialogProps> = ({ score, correctBin, onPl
         <div className="button-container">
           <button onClick={onPlayAgain} className={`${styles.gameButton} ${styles.green} ${styles.smallButton}`}>Play Again</button>
           {isGuestMode && (
-            <button onClick={login} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
+            <button onClick={handleLogin} className={`${styles.gameButton} ${styles.orange} ${styles.smallButton}`}>Login to Save Score</button>
           )}
           {!isGuestMode && (
             <button onClick={shareOnWarpcast} className={`${styles.gameButton} ${styles.purple} ${styles.smallButton}`}>
-              <Image src="/warpcast-logo.png" alt="Warpcast" width={10} height={10} />
+              
               <span className="share-text">Share</span>
             </button>
           )}
