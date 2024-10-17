@@ -12,221 +12,321 @@ import { FaInfoCircle } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 import styles from './Home.module.css'; // Make sure to create this CSS module file
 
-export type WasteItemType = {
+// Define difficulty levels
+export type Difficulty = 'Easiest' | 'Easy' | 'Medium' | 'Difficult' | 'Most Difficult';
+
+// Update WasteItemType to include difficulty
+export interface WasteItemType {
   name: string;
   category: string;
-  // Add any other properties that your waste item should have
-};
-const wasteItems: WasteItemType[] = [
-  // Wet Waste (50 items)
-  { name: "Vegetable peels", category: "wet-waste" },
-  { name: "Fruit scraps", category: "wet-waste" },
-  { name: "Leftover dal", category: "wet-waste" },
-  { name: "Tea leaves", category: "wet-waste" },
-  { name: "Coffee grounds", category: "wet-waste" },
-  { name: "Eggshells", category: "wet-waste" },
-  { name: "Used paper tissues", category: "wet-waste" },
-  { name: "Fallen leaves", category: "wet-waste" },
-  { name: "Grass clippings", category: "wet-waste" },
-  { name: "Cooked rice", category: "wet-waste" },
-  { name: "Spoiled milk", category: "wet-waste" },
-  { name: "Rotten vegetables", category: "wet-waste" },
-  { name: "Fish bones", category: "wet-waste" },
-  { name: "Meat scraps", category: "wet-waste" },
-  { name: "Coconut shells", category: "wet-waste" },
-  { name: "Used tea bags", category: "wet-waste" },
-  { name: "Banana peels", category: "wet-waste" },
-  { name: "Potato skins", category: "wet-waste" },
-  { name: "Stale roti", category: "wet-waste" },
-  { name: "Wilted flowers", category: "wet-waste" },
-  { name: "Leftover sabzi", category: "wet-waste" },
-  { name: "Mango seeds", category: "wet-waste" },
-  { name: "Onion skins", category: "wet-waste" },
-  { name: "Expired yogurt", category: "wet-waste" },
-  { name: "Moldy paneer", category: "wet-waste" },
-  { name: "Watermelon rinds", category: "wet-waste" },
-  { name: "Paan spittle", category: "wet-waste" },
-  { name: "Corn cobs", category: "wet-waste" },
-  { name: "Sugarcane bagasse", category: "wet-waste" },
-  { name: "Coconut husk", category: "wet-waste" },
-  { name: "Jackfruit peels", category: "wet-waste" },
-  { name: "Tamarind seeds", category: "wet-waste" },
-  { name: "Betel nut remains", category: "wet-waste" },
-  { name: "Leftover idli", category: "wet-waste" },
-  { name: "Spoiled dosa batter", category: "wet-waste" },
-  { name: "Used haldi (turmeric) powder", category: "wet-waste" },
-  { name: "Discarded curry leaves", category: "wet-waste" },
-  { name: "Rotten mangoes", category: "wet-waste" },
-  { name: "Spoiled chutney", category: "wet-waste" },
-  { name: "Used tea powder", category: "wet-waste" },
-  { name: "Leftover poha", category: "wet-waste" },
-  { name: "Spoiled sambar", category: "wet-waste" },
-  { name: "Rotten tomatoes", category: "wet-waste" },
-  { name: "Discarded lemon peels", category: "wet-waste" },
-  { name: "Spoiled buttermilk", category: "wet-waste" },
-  { name: "Used ginger-garlic paste", category: "wet-waste" },
-  { name: "Leftover biryani", category: "wet-waste" },
-  { name: "Rotten papaya", category: "wet-waste" },
-  { name: "Spoiled raita", category: "wet-waste" },
-  { name: "Used cardamom pods", category: "wet-waste" },
+  difficulty: Difficulty;
+}
 
-  // Dry Waste (50 items)
-  { name: "Newspaper", category: "dry-waste" },
-  { name: "Cardboard boxes", category: "dry-waste" },
-  { name: "Plastic bottles", category: "dry-waste" },
-  { name: "Glass jars", category: "dry-waste" },
-  { name: "Aluminum cans", category: "dry-waste" },
-  { name: "Magazine pages", category: "dry-waste" },
-  { name: "Plastic bags", category: "dry-waste" },
-  { name: "Tetrapak cartons", category: "dry-waste" },
-  { name: "Metal bottle caps", category: "dry-waste" },
-  { name: "Empty shampoo bottles", category: "dry-waste" },
-  { name: "Plastic food containers", category: "dry-waste" },
-  { name: "Broken ceramic cups", category: "dry-waste" },
-  { name: "Old clothes", category: "dry-waste" },
-  { name: "Shoes", category: "dry-waste" },
-  { name: "Empty paint cans", category: "dry-waste" },
-  { name: "Plastic toys", category: "dry-waste" },
-  { name: "Styrofoam packaging", category: "dry-waste" },
-  { name: "Rubber bands", category: "dry-waste" },
-  { name: "CD/DVD discs", category: "dry-waste" },
-  { name: "Plastic cutlery", category: "dry-waste" },
-  { name: "Paper cups", category: "dry-waste" },
-  { name: "Tin foil", category: "dry-waste" },
-  { name: "Pens and pencils", category: "dry-waste" },
-  { name: "Bubble wrap", category: "dry-waste" },
-  { name: "Plastic straws", category: "dry-waste" },
-  { name: "Empty ghee containers", category: "dry-waste" },
-  { name: "Broken bangles", category: "dry-waste" },
-  { name: "Old textbooks", category: "dry-waste" },
-  { name: "Empty spice bottles", category: "dry-waste" },
-  { name: "Plastic buckets", category: "dry-waste" },
-  { name: "Broken plastic hangers", category: "dry-waste" },
-  { name: "Empty oil cans", category: "dry-waste" },
-  { name: "Discarded CFL bulbs", category: "dry-waste" },
-  { name: "Old calendars", category: "dry-waste" },
-  { name: "Broken plastic toys", category: "dry-waste" },
-  { name: "Empty detergent packets", category: "dry-waste" },
-  { name: "Plastic packaging of snacks", category: "dry-waste" },
-  { name: "Broken plastic combs", category: "dry-waste" },
-  { name: "Empty toothpaste tubes", category: "dry-waste" },
-  { name: "Discarded plastic utensils", category: "dry-waste" },
-  { name: "Old cassette tapes", category: "dry-waste" },
-  { name: "Broken plastic chairs", category: "dry-waste" },
-  { name: "Empty medicine blister packs", category: "dry-waste" },
-  { name: "Discarded plastic folders", category: "dry-waste" },
-  { name: "Broken plastic buckets", category: "dry-waste" },
-  { name: "Empty plastic oil bottles", category: "dry-waste" },
-  { name: "Discarded plastic pens", category: "dry-waste" },
-  { name: "Broken plastic rulers", category: "dry-waste" },
-  { name: "Empty plastic containers of cosmetics", category: "dry-waste" },
-  { name: "Discarded plastic wrappers of sweets", category: "dry-waste" },
+const wetWasteItems: WasteItemType[] = [
+  // wet waste
+  // Easiest
+  { name: "Banana peel", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Tea leaves", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Vegetable peels", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Mango seed", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Leftover rice", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Used tea bags", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Coconut husk", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Wilted marigold flowers", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Curry leaves", category: "wet-waste", difficulty: "Easiest" },
+  { name: "Lemon rinds", category: "wet-waste", difficulty: "Easiest" },
 
-  // Hazardous Waste (40 items)
-  { name: "Paint thinner", category: "hazardous-waste" },
-  { name: "Pesticides", category: "hazardous-waste" },
-  { name: "Motor oil", category: "hazardous-waste" },
-  { name: "Antifreeze", category: "hazardous-waste" },
-  { name: "Asbestos", category: "hazardous-waste" },
-  { name: "Mercury thermometers", category: "hazardous-waste" },
-  { name: "Lead-acid batteries", category: "hazardous-waste" },
-  { name: "Fluorescent light bulbs", category: "hazardous-waste" },
-  { name: "Pool chemicals", category: "hazardous-waste" },
-  { name: "Bleach", category: "hazardous-waste" },
-  { name: "Ammonia", category: "hazardous-waste" },
-  { name: "Drain cleaners", category: "hazardous-waste" },
-  { name: "Oven cleaners", category: "hazardous-waste" },
-  { name: "Glue and adhesives", category: "hazardous-waste" },
-  { name: "Photographic chemicals", category: "hazardous-waste" },
-  { name: "Expired medications", category: "hazardous-waste" },
-  { name: "Nail polish remover", category: "hazardous-waste" },
-  { name: "Lighter fluid", category: "hazardous-waste" },
-  { name: "Insecticides", category: "hazardous-waste" },
-  { name: "Car batteries", category: "hazardous-waste" },
-  { name: "Kerosene", category: "hazardous-waste" },
-  { name: "Rat poison", category: "hazardous-waste" },
-  { name: "Mosquito repellent coils", category: "hazardous-waste" },
-  { name: "Hair dye", category: "hazardous-waste" },
-  { name: "Expired sunscreen", category: "hazardous-waste" },
-  { name: "Used engine oil", category: "hazardous-waste" },
-  { name: "Expired cosmetics", category: "hazardous-waste" },
-  { name: "Shoe polish", category: "hazardous-waste" },
-  { name: "Fungicides", category: "hazardous-waste" },
-  { name: "Expired cooking oil", category: "hazardous-waste" },
-  { name: "Mothballs", category: "hazardous-waste" },
-  { name: "Expired car care products", category: "hazardous-waste" },
-  { name: "Expired household cleaners", category: "hazardous-waste" },
-  { name: "Used lithium batteries", category: "hazardous-waste" },
-  { name: "Expired fire extinguishers", category: "hazardous-waste" },
-  { name: "Used printer cartridges", category: "hazardous-waste" },
-  { name: "Expired perfumes", category: "hazardous-waste" },
-  { name: "Used cooking oil", category: "hazardous-waste" },
-  { name: "Expired pesticides", category: "hazardous-waste" },
-  { name: "Used syringes", category: "hazardous-waste" },
+  // Easy
+  { name: "Leftover dal", category: "wet-waste", difficulty: "Easy"  },
+  { name: "Spoiled lassi", category: "wet-waste", difficulty: "Easy" },
+  { name: "Rotten tomatoes", category: "wet-waste", difficulty: "Easy" },
+  { name: "Used paan leaves", category: "wet-waste", difficulty: "Easy" },
+  { name: "Wet newspapers", category: "wet-waste", difficulty: "Easy" },
+  { name: "Tender coconut remains", category: "wet-waste", difficulty: "Easy" },
+  { name: "Sugarcane bagasse", category: "wet-waste", difficulty: "Easy" },
+  { name: "Stale flower garlands", category: "wet-waste", difficulty: "Easy" },
+  { name: "Used jasmine strings", category: "wet-waste", difficulty: "Easy" },
+  { name: "Soiled paper food trays", category: "wet-waste", difficulty: "Easy" },
 
-  // E-Waste (30 items)
-  { name: "Old smartphones", category: "e-waste" },
-  { name: "Broken laptops", category: "e-waste" },
-  { name: "Computer monitors", category: "e-waste" },
-  { name: "Printers", category: "e-waste" },
-  { name: "Keyboards", category: "e-waste" },
-  { name: "Computer mice", category: "e-waste" },
-  { name: "Tablets", category: "e-waste" },
-  { name: "Digital cameras", category: "e-waste" },
-  { name: "MP3 players", category: "e-waste" },
-  { name: "Video game consoles", category: "e-waste" },
-  { name: "Television sets", category: "e-waste" },
-  { name: "DVD players", category: "e-waste" },
-  { name: "Electric kettles", category: "e-waste" },
-  { name: "Microwave ovens", category: "e-waste" },
-  { name: "Electric toothbrushes", category: "e-waste" },
-  { name: "Old remote controls", category: "e-waste" },
-  { name: "Broken hair dryers", category: "e-waste" },
-  { name: "Electric shavers", category: "e-waste" },
-  { name: "Outdated smartwatches", category: "e-waste" },
-  { name: "Defunct power banks", category: "e-waste" },
-  { name: "Broken mixers/grinders", category: "e-waste" },
-  { name: "Old CRT monitors", category: "e-waste" },
-  { name: "Broken air conditioners", category: "e-waste" },
-  { name: "Defunct solar inverters", category: "e-waste" },
-  { name: "Old DTH set-top boxes", category: "e-waste" },
-  { name: "Broken electric fans", category: "e-waste" },
-  { name: "Outdated feature phones", category: "e-waste" },
-  { name: "Broken induction cooktops", category: "e-waste" },
-  { name: "Old digital calculators", category: "e-waste" },
-  { name: "Defunct UPS systems", category: "e-waste" },
+  // Medium
+  { name: "Fish bones from fish fry", category: "wet-waste", difficulty: "Medium" },
+  { name: "Chicken bones from biryani", category: "wet-waste", difficulty: "Medium" },
+  { name: "Spoiled curd", category: "wet-waste", difficulty: "Medium" },
+  { name: "Moldy chapati", category: "wet-waste", difficulty: "Medium" },
+  { name: "Wet paper dosa", category: "wet-waste", difficulty: "Medium" },
+  { name: "Used betel nut", category: "wet-waste", difficulty: "Medium" },
+  { name: "Coconut kernel", category: "wet-waste", difficulty: "Medium" },
+  { name: "Soiled cardboard chai cups", category: "wet-waste", difficulty: "Medium" },
+  { name: "Expired atta (wheat flour)", category: "wet-waste", difficulty: "Medium" },
+  { name: "Used agarbatti (incense sticks)", category: "wet-waste", difficulty: "Medium" },
 
-  // Sanitary Waste (30 items)
-  { name: "Used diapers", category: "sanitary-waste" },
-  { name: "Sanitary napkins", category: "sanitary-waste" },
-  { name: "Tampons", category: "sanitary-waste" },
-  { name: "Bandages", category: "sanitary-waste" },
-  { name: "Cotton swabs", category: "sanitary-waste" },
-  { name: "Disposable masks", category: "sanitary-waste" },
-  { name: "Used gloves", category: "sanitary-waste" },
-  { name: "Dental floss", category: "sanitary-waste" },
-  { name: "Razor blades", category: "sanitary-waste" },
-  { name: "Used tissues", category: "sanitary-waste" },
-  { name: "Contact lenses", category: "sanitary-waste" },
-  { name: "Hair from brushes", category: "sanitary-waste" },
-  { name: "Nail clippings", category: "sanitary-waste" },
-  { name: "Used toothbrushes", category: "sanitary-waste" },
-  { name: "Wax strips", category: "sanitary-waste" },
-  { name: "Used cotton balls", category: "sanitary-waste" },
-  { name: "Disposable shoe covers", category: "sanitary-waste" },
-  { name: "Used face masks", category: "sanitary-waste" },
-  { name: "Disposable cleaning wipes", category: "sanitary-waste" },
-  { name: "Used band-aids", category: "sanitary-waste" },
-  { name: "Expired condoms", category: "sanitary-waste" },
-  { name: "Used menstrual cups", category: "sanitary-waste" },
-  { name: "Disposable underwear", category: "sanitary-waste" },
-  { name: "Used tongue cleaners", category: "sanitary-waste" },
-  { name: "Disposable bed sheets", category: "sanitary-waste" },
-  { name: "Used ear buds", category: "sanitary-waste" },
-  { name: "Disposable hair nets", category: "sanitary-waste" },
-  { name: "Used dental picks", category: "sanitary-waste" },
-  { name: "Disposable diapers", category: "sanitary-waste" },
-  { name: "Used sanitary pads", category: "sanitary-waste" },
+  // Difficult
+  { name: "Expired mango pickle", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Used tea strainer contents", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Spoiled paneer", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Rancid ghee", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Wet supari (areca nut)", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Used mehendi (henna) paste", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Soiled banana leaf plates", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Bhutta (corn) cobs", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Expired coconut chutney", category: "wet-waste", difficulty: "Difficult" },
+  { name: "Used cotton wicks from oil lamps", category: "wet-waste", difficulty: "Difficult" },
+
+  // Most Difficult
+  { name: "Spoiled soya chunks", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Wet kumkum powder", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Expired grated coconut", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Used clay for Ganesh idols", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Wet sandal (chandan) paste", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Biodegradable gulal from Holi", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Expired liquid jaggery", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Used natural sindhoor", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Expired liquid ayurvedic tonics", category: "wet-waste", difficulty: "Most Difficult" },
+  { name: "Wet floral rangoli remains", category: "wet-waste", difficulty: "Most Difficult" },
+  // dry waste
+  // Easiest
+  { name: "Old newspaper", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Empty plastic water bottle", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Cardboard box", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Used paper envelope", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Empty chips packet", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Plastic carry bag", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Used paper ticket", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Empty biscuit wrapper", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Broken pencil", category: "dry-waste", difficulty: "Easiest" },
+  { name: "Used paper napkin", category: "dry-waste", difficulty: "Easiest" },
+
+  // Easy
+  { name: "Empty tetra pak of juice", category: "dry-waste", difficulty: "Easy" },
+  { name: "Plastic bottle cap", category: "dry-waste", difficulty: "Easy" },
+  { name: "Old magazine", category: "dry-waste", difficulty: "Easy" },
+  { name: "Empty ghee container", category: "dry-waste", difficulty: "Easy" },
+  { name: "Broken plastic comb", category: "dry-waste", difficulty: "Easy" },
+  { name: "Used paper cup", category: "dry-waste", difficulty: "Easy" },
+  { name: "Empty plastic milk packet", category: "dry-waste", difficulty: "Easy" },
+  { name: "Discarded wedding card", category: "dry-waste", difficulty: "Easy" },
+  { name: "Empty glass pickle jar", category: "dry-waste", difficulty: "Easy" },
+  { name: "Used paper plate", category: "dry-waste", difficulty: "Easy" },
+
+  // Medium
+  { name: "Empty shampoo bottle", category: "dry-waste", difficulty: "Medium" },
+  { name: "Broken plastic bucket", category: "dry-waste", difficulty: "Medium" },
+  { name: "Old textbook", category: "dry-waste", difficulty: "Medium" },
+  { name: "Empty aluminium foil roll", category: "dry-waste", difficulty: "Medium" },
+  { name: "Discarded plastic toy", category: "dry-waste", difficulty: "Medium" },
+  { name: "Used ball pen", category: "dry-waste", difficulty: "Medium" },
+  { name: "Empty packet of detergent", category: "dry-waste", difficulty: "Medium" },
+  { name: "Broken plastic hanger", category: "dry-waste", difficulty: "Medium" },
+  { name: "Empty tin of cooking oil", category: "dry-waste", difficulty: "Medium" },
+  { name: "Used paper calendar", category: "dry-waste", difficulty: "Medium" },
+
+  // Difficult
+  { name: "Empty toothpaste tube", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Broken ceramic cup", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Used disposable plastic cutlery", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Empty plastic container of spices", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Discarded CD/DVD", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Empty blister pack of tablets", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Broken glass bangle", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Used tent card from restaurant", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Empty aerosol spray can", category: "dry-waste", difficulty: "Difficult" },
+  { name: "Discarded plastic folder", category: "dry-waste", difficulty: "Difficult" },
+
+  // Most Difficult
+  { name: "Empty packet of sindoor", category: "dry-waste", difficulty: "Most Difficult"   },
+  { name: "Broken clay diya", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Used agarbatti (incense) stand", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Empty plastic container of kumkum", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Discarded rakhi (non-biodegradable)", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Empty foil packet of pan masala", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Broken plastic bindi box", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Used thermocol plate", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Empty packet of pooja items", category: "dry-waste", difficulty: "Most Difficult" },
+  { name: "Discarded plastic garland", category: "dry-waste", difficulty: "Most Difficult" },
+  // hazardous waste
+  // Easiest
+  { name: "Mosquito spray", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Tube light", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Rat poison", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Old painkillers", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Mosquito coil", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Roach spray", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Broken CFL", category: "hazardous-waste", difficulty: "Easiest" },
+  { name: "Car battery", category: "hazardous-waste", difficulty: "Easiest" },
+
+  // Easy
+  { name: "Phenyl bottle", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Paint brush", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Kerosene can", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Old cough syrup", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Dandruff shampoo", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Spray paint", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Hair dye", category: "hazardous-waste", difficulty: "Easy" },
+  { name: "Phone battery", category: "hazardous-waste", difficulty: "Easy" },
+
+  // Medium
+  { name: "Bleach bottle", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Engine oil", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Old insecticide", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Nail polish remover", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Mercury thermometer", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Fertilizer pack", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Toilet cleaner", category: "hazardous-waste", difficulty: "Medium" },
+  { name: "Car air filter", category: "hazardous-waste", difficulty: "Medium" },
+
+  // Difficult
+  { name: "Pesticide can", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Inverter battery", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Industrial glue", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Wood preservative", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Photo chemicals", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Pool chemicals", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Paint thinner", category: "hazardous-waste", difficulty: "Difficult" },
+  { name: "Oil filter", category: "hazardous-waste", difficulty: "Difficult" },
+
+  // Most Difficult
+  { name: "Asbestos sheets", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Mercury lamp", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Acid cleaner", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Lab glassware", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Industrial solvent", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Medical radiation", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "PCB capacitors", category: "hazardous-waste", difficulty: "Most Difficult" },
+  { name: "Industrial pesticide", category: "hazardous-waste", difficulty: "Most Difficult" },
+  // Sanitary waste 
+  // Easiest
+  { name: "Used tissue", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Cotton swab", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Band-aid", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Disposable mask", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Used napkin", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Dental floss", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Cotton balls", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Face wipes", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Paper towel", category: "sanitary-waste", difficulty: "Easiest" },
+  { name: "Disposable gloves", category: "sanitary-waste", difficulty: "Easiest" },
+
+  // Easy
+  { name: "Sanitary pad", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Diaper", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Shaving razor", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Nose tissue", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Makeup remover pad", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Nail file", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Toilet seat cover", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Disposable comb", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Earbuds", category: "sanitary-waste", difficulty: "Easy" },
+  { name: "Sanitizer wipe", category: "sanitary-waste", difficulty: "Easy" },
+
+  // Medium
+  { name: "Tampon", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Bandage", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Contact lenses", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Wax strips", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Disposable underwear", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Menstrual cup", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Panty liner", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Expired condom", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Used toothbrush", category: "sanitary-waste", difficulty: "Medium" },
+  { name: "Disposable razor", category: "sanitary-waste", difficulty: "Medium" },
+
+  // Difficult
+  { name: "Hair removal cream", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Incontinence pad", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Tongue cleaner", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Nail clippings", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Used lice comb", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Expired sunscreen", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Used lip balm", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Old loofah", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Disposable enema", category: "sanitary-waste", difficulty: "Difficult" },
+  { name: "Expired eye drops", category: "sanitary-waste", difficulty: "Difficult" },
+
+  // Most Difficult
+  { name: "Colostomy bag", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Insulin syringe", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Wound dressing", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Expired cosmetics", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Blood glucose strip", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Intrauterine device", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Catheter bag", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Expired ointment", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Used inhaler", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Expired birth control", category: "sanitary-waste", difficulty: "Most Difficult" },
+  { name: "Denture adhesive", category: "sanitary-waste", difficulty: "Most Difficult" },
+  // e-waste
+  // Easiest
+  { name: "Old phone", category: "e-waste", difficulty: "Easiest" },
+  { name: "Broken earphones", category: "e-waste", difficulty: "Easiest" },
+  { name: "USB cable", category: "e-waste", difficulty: "Easiest" },
+  { name: "Dead batteries", category: "e-waste", difficulty: "Easiest" },
+  { name: "Old charger", category: "e-waste", difficulty: "Easiest" },
+  { name: "Burnt bulb", category: "e-waste", difficulty: "Easiest" },
+  { name: "Broken mouse", category: "e-waste", difficulty: "Easiest" },
+  { name: "Old keyboard", category: "e-waste", difficulty: "Easiest" },
+  { name: "Remote control", category: "e-waste", difficulty: "Easiest" },
+  { name: "Memory card", category: "e-waste", difficulty: "Easiest" },
+
+  // Easy
+  { name: "Outdated laptop", category: "e-waste", difficulty: "Easy" },
+  { name: "Old tablet", category: "e-waste", difficulty: "Easy" },
+  { name: "Broken printer", category: "e-waste", difficulty: "Easy" },
+  { name: "CRT monitor", category: "e-waste", difficulty: "Easy" },
+  { name: "DVD player", category: "e-waste", difficulty: "Easy" },
+  { name: "Old digital watch", category: "e-waste", difficulty: "Easy" },
+  { name: "Broken calculator", category: "e-waste", difficulty: "Easy" },
+  { name: "Electric kettle", category: "e-waste", difficulty: "Easy" },
+  { name: "Old power bank", category: "e-waste", difficulty: "Easy" },
+  { name: "Broken hair dryer", category: "e-waste", difficulty: "Easy" },
+
+  // Medium
+  { name: "Old TV set", category: "e-waste", difficulty: "Medium" },
+  { name: "Broken microwave", category: "e-waste", difficulty: "Medium" },
+  { name: "Old refrigerator", category: "e-waste", difficulty: "Medium" },
+  { name: "Broken AC", category: "e-waste", difficulty: "Medium" },
+  { name: "Old washing machine", category: "e-waste", difficulty: "Medium" },
+  { name: "Broken mixer grinder", category: "e-waste", difficulty: "Medium" },
+  { name: "Old desktop PC", category: "e-waste", difficulty: "Medium" },
+  { name: "Broken table fan", category: "e-waste", difficulty: "Medium" },
+  { name: "Old music system", category: "e-waste", difficulty: "Medium" },
+  { name: "Broken vacuum cleaner", category: "e-waste", difficulty: "Medium" },
+
+  // Difficult
+  { name: "Old CCTV camera", category: "e-waste", difficulty: "Difficult" },
+  { name: "Broken video camera", category: "e-waste", difficulty: "Difficult" },
+  { name: "Old fax machine", category: "e-waste", difficulty: "Difficult" },
+  { name: "Broken treadmill", category: "e-waste", difficulty: "Difficult" },
+  { name: "Old inverter", category: "e-waste", difficulty: "Difficult" },
+  { name: "Broken UPS", category: "e-waste", difficulty: "Difficult" },
+  { name: "Old projector", category: "e-waste", difficulty: "Difficult" },
+  { name: "Broken air purifier", category: "e-waste", difficulty: "Difficult" },
+  { name: "Old scanner", category: "e-waste", difficulty: "Difficult" },
+  { name: "Broken water purifier", category: "e-waste", difficulty: "Difficult" },
+
+  // Most Difficult
+  { name: "Old solar inverter", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Broken ECG machine", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Old server rack", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Broken ATM machine", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Old ticket machine", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Broken X-ray machine", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Old electric car parts", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Broken 3D printer", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Old EV charging station", category: "e-waste", difficulty: "Most Difficult" },
+  { name: "Broken smart board", category: "e-waste", difficulty: "Most Difficult" }
+  ];
+
+// Similarly, create arrays for other waste categories (dry-waste, hazardous-waste, etc.)
+// const dryWasteItems: WasteItemType[] = [ ... ];
+// const hazardousWasteItems: WasteItemType[] = [ ... ];
+// ...
+
+// Combine all waste items
+const allWasteItems: WasteItemType[] = [
+  ...wetWasteItems,
+  // ...dryWasteItems,
+  // ...hazardousWasteItems,
+  // ...
 ];
 
 type WasteCategory = 'wet-waste' | 'dry-waste' | 'hazardous-waste' | 'sanitary-waste' | 'e-waste';
@@ -252,7 +352,7 @@ export default function Home() {
     "e-waste": 0,
   });
   const [availableItems, setAvailableItems] = useState<WasteItemType[]>([
-    ...wasteItems,
+    ...allWasteItems,
   ]);
   const [correctBin, setCorrectBin] = useState<string | null>(null);
   const [showWinnerDialog, setShowWinnerDialog] = useState<boolean>(false);
@@ -267,6 +367,9 @@ export default function Home() {
   // Add this state near your other state declarations
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
 
+  const [currentDifficulty, setCurrentDifficulty] = useState<Difficulty>('Easiest');
+  const [usedItems, setUsedItems] = useState<string[]>([]);
+
   const enableGuestMode = () => {
     setIsGuestMode(true);
   };
@@ -279,18 +382,41 @@ export default function Home() {
     console.log("Auth state:", { authenticated, user });
   }, [authenticated, user]);
 
-  const selectRandomItem = () => {
-    if (availableItems.length === 0) {
-      setShowGameOverDialog(true); // Show game over dialog when no items are left
-      return;
-    }
-    const randomIndex = Math.floor(Math.random() * availableItems.length);
-    const newItem = availableItems[randomIndex];
-    setCurrentItem(newItem);
-    setAvailableItems(
-      availableItems.filter((_, index) => index !== randomIndex)
+  const getNextItem = useCallback(() => {
+    const difficultyLevels: Difficulty[] = ['Easiest', 'Easy', 'Medium', 'Difficult', 'Most Difficult'];
+    const currentDifficultyIndex = difficultyLevels.indexOf(currentDifficulty);
+
+    let itemsForCurrentDifficulty = availableItems.filter(item => 
+      difficultyLevels.indexOf(item.difficulty) <= currentDifficultyIndex
     );
-    setCorrectBin(null);
+
+    if (itemsForCurrentDifficulty.length === 0) {
+      if (currentDifficultyIndex < difficultyLevels.length - 1) {
+        setCurrentDifficulty(difficultyLevels[currentDifficultyIndex + 1]);
+        return getNextItem(); // Recursively call to get next item at new difficulty
+      } else {
+        // All items have been used, you might want to reset the game or show a completion message
+        return null;
+      }
+    }
+
+    const randomIndex = Math.floor(Math.random() * itemsForCurrentDifficulty.length);
+    const selectedItem = itemsForCurrentDifficulty[randomIndex];
+
+    // Remove the selected item from available items
+    setAvailableItems(prev => prev.filter(item => item.name !== selectedItem.name));
+
+    return selectedItem;
+  }, [currentDifficulty, availableItems]);
+
+  const selectRandomItem = () => {
+    const newItem = getNextItem();
+    if (newItem) {
+      setCurrentItem(newItem);
+    } else {
+      // Handle game completion
+      setShowGameOverDialog(true);
+    }
   };
 
   const handleDrop = (item: WasteItemType, binCategory: string) => {
@@ -329,7 +455,9 @@ export default function Home() {
   };
 
   const handleTouchDrop = (item: WasteItemType) => {
-    setCurrentItem(item);
+    // Your logic for handling touch drop
+    // For example:
+    handleDrop(item, item.category);
   };
 
   const handleBinClick = (binCategory: string) => {
@@ -352,12 +480,14 @@ export default function Home() {
       "e-waste": 0,
     });
     setScore(0);
-    setAvailableItems([...wasteItems]);
+    setAvailableItems([...allWasteItems]);
     setCorrectBin(null);
     setShowWinnerDialog(false);
     setCompletedBin(null);
     setHasShownDialog(false);
     setShowGameOverDialog(false);
+    setCurrentDifficulty('Easiest');
+    setUsedItems([]);
     selectRandomItem();
   };
 
@@ -406,7 +536,7 @@ export default function Home() {
                 <span className="tooltip">
                   <h3>How to Play:</h3>
                   <ol>
-                    <li>Drag and drop waste items into the correct bins.</li>
+                    <li>Hold to Drag and drop waste items into the correct bins.</li>
                     <li>Double-click on bins to see what goes in them.</li>
                     <li>Fill a bin completely to win and claim an NFT.</li>
                     <li>Keep playing to top the leaderboard!</li>
