@@ -454,10 +454,12 @@ export default function Home() {
     }
   };
 
-  const handleTouchDrop = (item: WasteItemType) => {
-    // Your logic for handling touch drop
-    // For example:
-    handleDrop(item, item.category);
+  const handleTouchDrop = (item: WasteItemType, x: number, y: number) => {
+    const dropTarget = document.elementFromPoint(x, y);
+    const binCategory = dropTarget?.closest('.bin')?.getAttribute('data-category');
+    if (binCategory) {
+      handleDrop(item, binCategory as WasteCategory);
+    }
   };
 
   const handleBinClick = (binCategory: string) => {
@@ -564,7 +566,13 @@ export default function Home() {
               <>
                 <div className='score'>Score: {score}</div>
                 {currentItem && (
-                  <WasteItem {...currentItem} onTouchDrop={handleTouchDrop} />
+                  <WasteItem {...currentItem} onTouchDrop={(item, x, y) => {
+                    const dropTarget = document.elementFromPoint(x, y);
+                    const binCategory = dropTarget?.closest('.bin')?.getAttribute('data-category');
+                    if (binCategory) {
+                      handleDrop(item, binCategory as WasteCategory);
+                    }
+                  }} />
                 )}
                 <div className='bins-container'>
                   {categories.map((category) => (
