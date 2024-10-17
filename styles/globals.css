@@ -50,25 +50,24 @@ body {
 
 .info-icon {
   position: relative;
+  display: inline-block;
   margin-left: 10px;
-  cursor: help;
-  display: inline-flex;
-  align-items: center;
+  cursor: pointer;
 }
 
 .info-icon .icon-small {
-  font-size: 1.75rem; /* Adjust this value to make the icon smaller or larger */
-  color: #555; /* You can change this color to match your design */
+  font-size: 1.75rem;
+  color: #555;
 }
 
 .info-icon .tooltip {
   visibility: hidden;
-  width: 300px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
+  width: 275px;
+  background-color: #ffffffd8;
+  color: #3b3b3b;
+  text-align: left;
   border-radius: 6px;
-  padding: 5px;
+  padding: 15px;
   position: absolute;
   z-index: 1;
   bottom: 125%;
@@ -76,14 +75,27 @@ body {
   margin-left: -150px;
   opacity: 0;
   transition: opacity 0.3s;
-  font-size: 0.9rem; /* Adjust this value for the tooltip text size */
+  font-size: 0.7rem;
+  height: fit-content;
 }
 
 .info-icon:hover .tooltip {
   visibility: visible;
   opacity: 1;
-  height: fit-content;  
-  
+}
+
+.info-icon .tooltip h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.info-icon .tooltip ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.info-icon .tooltip li {
+  margin-bottom: 5px;
 }
 
 .score {

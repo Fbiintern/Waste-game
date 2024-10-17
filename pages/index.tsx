@@ -404,7 +404,13 @@ export default function Home() {
               <span className="info-icon">
                 <FaInfoCircle className="icon-small" />
                 <span className="tooltip">
-                  A simple drag and drop game to educate about waste segregation. Double click on bins to see what goes in them. Fill a bin completely to win & Claim an NFT Keep playing to top the leaderboard.
+                  <h3>How to Play:</h3>
+                  <ol>
+                    <li>Drag and drop waste items into the correct bins.</li>
+                    <li>Double-click on bins to see what goes in them.</li>
+                    <li>Fill a bin completely to win and claim an NFT.</li>
+                    <li>Keep playing to top the leaderboard!</li>
+                  </ol>
                 </span>
               </span>
             </h1>
@@ -464,16 +470,6 @@ export default function Home() {
                     updateGuestMode={updateGuestMode}
                   />
                 )}
-
-                <div className={styles.howToPlaySmall}>
-                  <h3>How to Play:</h3>
-                  <ol>
-                    <li>Drag and drop waste items into the correct bins.</li>
-                    <li>Double-click on bins to see what goes in them.</li>
-                    <li>Fill a bin completely to win and claim an NFT.</li>
-                    <li>Keep playing to top the leaderboard!</li>
-                  </ol>
-                </div>
               </>
             ) : (
               <div className='login-message'>
