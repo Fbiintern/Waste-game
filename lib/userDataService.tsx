@@ -38,18 +38,17 @@ export const saveUserScore = async (userId: string, score: number, farcasterUser
 
 export const saveFarcasterUsername = async (address: string, farcasterUsername: string | null) => {
   try {
-    const { error } = await supabase
-      .from('leaderboard')
-      .upsert(
-        { 
-          address, 
-          farcaster_username: farcasterUsername
-        }, 
-        { onConflict: 'address' }
-      )
-
-    if (error) throw error
+    const response = await fetch('/api/updateFarcasterUsername', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ address, farcasterUsername }),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update Farcaster username');
+    }
   } catch (err) {
-    console.error('Error saving Farcaster username:', err)
+    console.error('Error saving Farcaster username:', err);
   }
-}
+};
