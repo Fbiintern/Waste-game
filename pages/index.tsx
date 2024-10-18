@@ -419,7 +419,7 @@ export default function Home() {
     }
   };
 
-  const handleDrop = (item: WasteItemType, binCategory: string) => {
+  const handleDrop = async (item: WasteItemType, binCategory: string) => {
     if (item.category === binCategory) {
       const newLevel = Math.min(binLevels[binCategory] + 10, 100);
       setBinLevels((prev) => ({
@@ -436,8 +436,24 @@ export default function Home() {
         
         // Save the score when a bin is completed
         if (authenticated && !isGuestMode && user?.wallet?.address) {
-          console.log("Saving score:", { address: user.wallet.address, newScore });
-          saveUserScore(user.wallet.address, newScore, user?.farcaster?.username || null);
+          try {
+            const response = await fetch('/api/updateUserScore', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                userId: user.wallet.address,
+                score: score,
+                farcasterUsername: user?.farcaster?.username || null,
+              }),
+            });
+            if (!response.ok) {
+              throw new Error('Failed to update score');
+            }
+          } catch (error) {
+            console.error('Error saving score:', error);
+          }
         }
       } 
       
@@ -448,8 +464,24 @@ export default function Home() {
       
       // Save the score when the game ends
       if (authenticated && !isGuestMode && user?.wallet?.address) {
-        console.log("Saving score:", { address: user.wallet.address, score });
-        saveUserScore(user.wallet.address, score, user?.farcaster?.username || null);
+        try {
+          const response = await fetch('/api/updateScore', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              userId: user.wallet.address,
+              score: score,
+              farcasterUsername: user?.farcaster?.username || null,
+            }),
+          });
+          if (!response.ok) {
+            throw new Error('Failed to update score');
+          }
+        } catch (error) {
+          console.error('Error saving score:', error);
+        }
       }
     }
   };
