@@ -1,0 +1,164 @@
+.leaderboardContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px;
+}
+
+.toggleButton {
+  background-color: #7D50C3;
+  border: none;
+  color: white;
+  padding: 12px 0px;
+  text-align: center;
+  text-decoration: none;
+  display:flex;
+  font-size: 14px;
+  margin: 0 auto 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: background-color 0.3s, transform 0.1s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  max-height: 12px;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.toggleButton:hover {
+  background-color: #6A3CAD;
+  transform: translateY(-2px);
+}
+
+.toggleButton:active {
+  transform: translateY(0);
+}
+
+.leaderboardContent {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboardContent h2 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+  padding: 12px;
+  text-align: left;
+}
+
+.leaderboardTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.rank {
+  font-weight: bold;
+  color: #4CAF50;
+  width: 40px;
+}
+
+.address {
+  font-weight: 500;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score {
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+}
+
+.leaderboardTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.leaderboardTable tr:hover {
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.currentUser {
+  background-color: rgba(76, 175, 80, 0.1);
+  font-weight: bold;
+}
+
+.youIndicator {
+  color: #4CAF50;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .leaderboardContainer {
+    width: 90%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .leaderboardContent {
+    padding: 10px;
+  }
+
+  .leaderboardContent h2 {
+    font-size: 20px;
+  }
+
+  .leaderboardTable th,
+  .leaderboardTable td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .address {
+    max-width: 120px;
+  }
+
+  .rank {
+    width: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaderboardTable th,
+  .leaderboardTable td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .address {
+    max-width: 100px;
+  }
+
+  .rank {
+    width: 25px;
+  }
+}

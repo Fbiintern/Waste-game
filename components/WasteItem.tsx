@@ -1,52 +1,54 @@
-import React, { useState } from 'react';
-import { WasteItemType } from '../pages/index';
+import React from 'react';  
+import { WasteItemType, Difficulty } from '../pages/index';
+import styles from '../pages/Home.module.css';
 
-const WasteItem: React.FC<WasteItemType> = ({ name, category }) => {
-  const [isDragging, setIsDragging] = useState(false);
+interface WasteItemProps extends WasteItemType {
+  onTouchDrop: (item: WasteItemType, x: number, y: number) => void;
+}
 
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    e.dataTransfer.setData("text/plain", JSON.stringify({ name, category }));
-    setIsDragging(true);
+const WasteItem: React.FC<WasteItemProps> = ({ name, category, difficulty, onTouchDrop }) => {
+  let isDragging = false;
+  let startPos = { x: 0, y: 0 };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDragging = true;
+    startPos = {
+      x: e.touches[0].clientX,
+      y: e.touches[0].clientY
+    };
   };
 
-  const handleDragEnd = () => {
-    setIsDragging(false);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    e.preventDefault(); // Prevent scrolling while dragging
   };
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0];
-    const div = e.currentTarget;
-    const rect = div.getBoundingClientRect();
-    div.style.position = 'fixed';
-    div.style.left = `${touch.clientX - rect.width / 2}px`;
-    div.style.top = `${touch.clientY - rect.height / 2}px`;
-    setIsDragging(true);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    isDragging = false;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    
+    // Only trigger onTouchDrop if the item has been moved
+    if (Math.abs(endX - startPos.x) > 10 || Math.abs(endY - startPos.y) > 10) {
+      onTouchDrop({ name, category, difficulty }, endX, endY);
+    }
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0];
-    const div = e.currentTarget;
-    div.style.left = `${touch.clientX - div.offsetWidth / 2}px`;
-    div.style.top = `${touch.clientY - div.offsetHeight / 2}px`;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    const div = e.currentTarget;
-    div.style.position = 'static';
-    setIsDragging(false);
-    // Here you would implement the logic to check if the item is over a bin
-    // and call the appropriate function to handle the drop
+  const preventClick = (e: React.MouseEvent) => {
+    e.preventDefault();
   };
 
   return (
     <div 
-      className={`waste-item ${isDragging ? 'dragging' : ''}`}
-      draggable
-      onDragStart={handleDragStart}
-      onDragEnd={handleDragEnd}
+      className={styles.wasteItem} 
+      draggable 
+      onDragStart={(e) => e.dataTransfer.setData('text/plain', JSON.stringify({ name, category, difficulty }))}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      onClick={preventClick} // Prevent click events
+      style={{ userSelect: 'none', cursor: 'move' }} // Disable text selection and change cursor
     >
       {name}
     </div>

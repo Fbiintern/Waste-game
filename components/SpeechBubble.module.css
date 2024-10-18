@@ -1,0 +1,63 @@
+.bubble {
+  position: absolute;
+  bottom: calc(100% + 20px); /* Position above the bin with a fixed gap */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(255, 255, 255);
+  color: #334;
+  display: inline-block;
+  font-family: 'Play';
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5em;
+  padding: 12px;
+  text-align: center;
+  vertical-align: top;
+  min-width: 200px;
+  max-width: 90%;
+  border-radius: 0.4em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* z-index: 10; */
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  border: 15px solid transparent;
+  border-top-color: rgb(255, 255, 255);
+  border-bottom: 0;
+  margin-left: -15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bubble {
+    font-size: 12px;
+    min-width: 150px;
+    bottom: calc(100% + 20px); /* Adjust for mobile */
+  }
+}
+
+/* Optional: Add these classes if you want to use them */
+.large {
+  font-size: 18px;
+  padding: 16px;
+}
+
+.rounded {
+  border-radius: 0.8em;
+  font-style: normal;
+  font-weight: 400;
+
+}
+
+.blue {
+  background: #ddf;
+  color: #334;
+}
+
+.blue::after {
+  border-top-color: #ddf;
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import { Providers } from '../providers';
+import Provider from '../config/Provider';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Providers>
+    <Provider>
       <Component {...pageProps} />
-    </Providers>
+    </Provider>
   );
 }
 
